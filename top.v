@@ -32,7 +32,6 @@ module top (
 );
 
   reg tx_write;
-  reg [7:0] value;
   wire tx_ready;
 
   wire [7:0] rx_data;
@@ -40,31 +39,46 @@ module top (
   wire rx_rdy;
   reg rx_rdy_reg;
 
+  reg [7:0] value;
+  reg value_ready;
 
-  uart_tx #(.BAUD(115200)) uart_transmit
+
+  uart_tx #(.BAUD(1500000)) uart_transmit
            ( .clk(clk), .rst(~rstn), .tx(uart_tx),
              .data(value), .write(tx_write), .ready(tx_ready) );
 
-  uart_rx #(.BAUD(115200)) uart_receive
+  uart_rx #(.BAUD(1500000)) uart_receive
            ( .clk(clk), .rst(~rstn), .rx(uart_rx),
              .read_data(rx_data), .read_ready(rx_rdy));
 
-  assign dbg = rx_rdy_reg;
-  assign led = value;
+  reg [7:0] overflows;
+  assign dbg = uart_tx;
+  assign led = overflows;
+
 
   always @(posedge clk) begin
     if (~rstn) begin
       value = 0;
       rx_rdy_reg = 0;
       tx_write = 0;
+      value_ready = 0;
+      overflows = 0;
     end else begin
       tx_write <= 0;
       rx_rdy_reg <= rx_rdy;
 
       if (rx_rdy && !rx_rdy_reg) begin
-        value <= rx_data;
-        if (tx_ready)
+        if (!value_ready) begin
+          value <= rx_data;
+          value_ready <= 1;
+        end else begin
+          overflows <= overflows + 1;
+        end
+      end
+
+      if (tx_ready && value_ready) begin
           tx_write <= 1;
+          value_ready <= 0;
       end
     end
 

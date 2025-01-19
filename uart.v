@@ -1,45 +1,4 @@
 
-module uart_baudgen #(
-    parameter DIVISOR = 104
-  )
-  (
-  input wire clk,
-  input wire rst,
-  output wire tx_clk);
-
-  reg [15:0] counter;
-
-//  always @(posedge clk) begin
-//    if (rst) begin
-//      counter = 0;
-//      tx_clk = 0;
-//    end else begin
-//      tx_clk = 0;
-//      counter = counter + 1;
-//      if (counter == DIVISOR) begin
-//        counter = 0;
-//        tx_clk = 1;
-//      end
-//    end
-//  end
-
-  assign tx_clk = (counter == 0);
-
-  always @(posedge clk) begin
-    if (rst) begin
-      counter <= 0;
-    end else begin
-      if (counter == DIVISOR - 1)
-        counter <= 0;
-      else
-        counter <= counter + 1;
-
-    end
-  end
-
-endmodule
-
-
 module uart_tx #(
     parameter CLK = 12000000,
     parameter BAUD = 1500000
@@ -63,11 +22,11 @@ module uart_tx #(
   reg [3:0] bits;
   reg [1:0] state;
   reg [7:0] shiftreg;
-  wire baudclk;
+  reg [15:0] baudtimer;
 
-  uart_baudgen #(.DIVISOR(CLK/BAUD)) baud (.clk(clk), .rst(rst), .tx_clk(baudclk));
+  wire baudtimer_done = (baudtimer == (CLK / BAUD) - 1);
 
-  assign ready = (state == IDLE);
+  assign ready = (state == IDLE) || (state == STOP);
 
   always @(posedge clk)
     if (rst) begin
@@ -83,29 +42,43 @@ module uart_tx #(
             shiftreg <= data;
             bits <= 8;
             state <= START;
+            baudtimer <= 0;
           end
         end
 
         START: begin
-          if (baudclk) begin
-            tx <= 0;
+          baudtimer <= baudtimer + 1;
+          tx <= 0;
+          if (baudtimer_done) begin
             state <= DATA;
+            baudtimer <= 0;
           end
         end
 
         DATA: begin
-          if (baudclk) begin
-            tx <= shiftreg[0];
-            shiftreg <= shiftreg[7:1];
-            bits <= bits - 1;
-            if (bits == 1) state <= STOP;
+          baudtimer <= baudtimer + 1;
+          tx <= shiftreg[0];
+          if (baudtimer_done) begin
+            shiftreg <= {0, shiftreg[7:1]};
+            baudtimer <= 0;
+
+            bits = bits - 1;
+            if (bits == 0) state <= STOP;
           end
         end
 
         STOP: begin
-          if (baudclk) begin
-            tx <= 1;
+          tx <= 1;
+          baudtimer <= baudtimer + 1;
+          if (baudtimer_done) begin
             state <= IDLE;
+            // allow a transition straight to start bit
+            if (write) begin
+              shiftreg <= data;
+              bits <= 8;
+              state <= START;
+              baudtimer <= 0;
+            end
           end
         end
 
@@ -178,7 +151,7 @@ module uart_rx #(
             end
             timer <= 0;
           end else if (timer == HALFPERIOD - 1) begin
-            shiftreg <= {shiftreg[6:0], rx};
+            shiftreg <= {rx, shiftreg[7:1]};
             bits <= bits + 1;
           end
         end
