@@ -42,23 +42,27 @@ module top (
   reg [7:0] value;
   reg value_ready;
 
+  wire clk96;
+  wire rst;
 
-  uart_tx #(.BAUD(1500000)) uart_transmit
-           ( .clk(clk), .rst(~rstn), .tx(uart_tx),
+  clock clocks (.clk12(clk), .nrst(rstn), .clkout(clk96), .rst(rst));
+
+  uart_tx #(.CLK(96000000), .BAUD(4000000)) uart_transmit
+           ( .clk(clk96), .rst(rst), .tx(uart_tx),
              .data(value), .write(tx_write), .ready(tx_ready) );
 
-  uart_rx #(.BAUD(1500000)) uart_receive
-           ( .clk(clk), .rst(~rstn), .rx(uart_rx),
+  uart_rx #(.CLK(96000000), .BAUD(4000000)) uart_receive
+           ( .clk(clk96), .rst(rst), .rx(uart_rx),
              .data(rx_data), .read_ready(rx_rdy), .read_ack(rx_ack));
 
   reg [7:0] overflows;
   assign dbg = uart_tx;
-  assign led = overflows;
+  assign led = !rst;
 
   assign rx_ack = rx_rdy;
 
-  always @(posedge clk) begin
-    if (~rstn) begin
+  always @(posedge clk96) begin
+    if (rst) begin
       value = 0;
       tx_write = 0;
       value_ready = 0;
