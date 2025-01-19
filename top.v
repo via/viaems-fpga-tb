@@ -37,7 +37,7 @@ module top (
   wire [7:0] rx_data;
 
   wire rx_rdy;
-  reg rx_rdy_reg;
+  wire rx_ack;
 
   reg [7:0] value;
   reg value_ready;
@@ -49,25 +49,24 @@ module top (
 
   uart_rx #(.BAUD(1500000)) uart_receive
            ( .clk(clk), .rst(~rstn), .rx(uart_rx),
-             .read_data(rx_data), .read_ready(rx_rdy));
+             .data(rx_data), .read_ready(rx_rdy), .read_ack(rx_ack));
 
   reg [7:0] overflows;
   assign dbg = uart_tx;
   assign led = overflows;
 
+  assign rx_ack = rx_rdy;
 
   always @(posedge clk) begin
     if (~rstn) begin
       value = 0;
-      rx_rdy_reg = 0;
       tx_write = 0;
       value_ready = 0;
       overflows = 0;
     end else begin
       tx_write <= 0;
-      rx_rdy_reg <= rx_rdy;
 
-      if (rx_rdy && !rx_rdy_reg) begin
+      if (rx_rdy) begin
         if (!value_ready) begin
           value <= rx_data;
           value_ready <= 1;

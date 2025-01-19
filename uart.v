@@ -96,8 +96,9 @@ module uart_rx #(
 
   input wire rx,
 
-  output reg [7:0] read_data,
-  output reg read_ready
+  output reg [7:0] data,
+  output reg read_ready,
+  input wire read_ack
 );
 
   parameter IDLE  = 2'd0;
@@ -121,6 +122,10 @@ module uart_rx #(
       timer <= 0;
       read_ready <= 0;
     end else begin
+
+      if (read_ready && read_ack)
+        read_ready <= 0;
+
       case (state)
         IDLE: begin
           // Wait for transition to low
@@ -147,7 +152,7 @@ module uart_rx #(
             if (bits == 8) begin
               state <= STOP;
               read_ready <= 1;
-              read_data <= shiftreg;
+              data <= shiftreg;
             end
             timer <= 0;
           end else if (timer == HALFPERIOD - 1) begin
