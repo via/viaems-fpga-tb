@@ -1,0 +1,12 @@
+BYTE := CXXX XXXX
+
+if C == 1: command
+if C == 0: continuation
+
+DELAY := 10DDDDDD          // Delay up to 64
+DELAY := 10DDDDDD 0DDDDDDD // Delay up to 8192
+
+OUTPUT := 1100VVVV          // Output first four pins
+OUTPUT := 1100VVVV 0100VVVV // Output all 8 pins
+
+ADC := 1110PPPP 0VVVVVVV 000VVVVV // P selects output, V is 12bit adc value

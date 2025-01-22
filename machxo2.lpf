@@ -14,7 +14,11 @@ IOBUF PORT "uart_tx" IO_TYPE=LVCMOS33;
 LOCATE COMP "uart_rx" SITE "A11";
 IOBUF PORT "uart_rx" IO_TYPE=LVCMOS33;
 
+LOCATE COMP "uart_rtsn" SITE "F10";
+IOBUF PORT "uart_rtsn" IO_TYPE=LVCMOS33;
 
+LOCATE COMP "uart_ctsn" SITE "B11";
+IOBUF PORT "uart_ctsn" IO_TYPE=LVCMOS33;
 
 
 

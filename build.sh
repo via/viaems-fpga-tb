@@ -5,6 +5,8 @@ SERV=/home/via/dev/serv
 yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
   top.v \
   uart.v \
+  parser.v \
+  fifo.v \
   clock.v \
   pll.v
 
