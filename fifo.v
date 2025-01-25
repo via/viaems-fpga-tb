@@ -26,14 +26,16 @@ module fifo (
       write_idx <= 0;
       read_idx <= 0;
       read_data <= 0;
-    end else
+    end else begin
       if (write_en && !full) begin
         memory[write_idx] <= write_data;
         write_idx <= (write_idx + 1) % 1024;
-      end else if (read_en && !empty) begin
+      end 
+      if (read_en && !empty) begin
         read_data <= memory[read_idx];
         read_idx <= (read_idx + 1) % 1024;
       end
+    end
 
 
 

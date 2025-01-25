@@ -31,8 +31,8 @@ module top (
 
   output reg uart_ctsn,
 
-  output wire dbg,
-  output wire [7:0] led
+  output reg dbg,
+  output reg [7:0] led
 );
 
   reg tx_write;
@@ -51,31 +51,49 @@ module top (
 
   clock clocks (.clk12(clk), .nrst(rstn), .clkout(clk96), .rst(rst));
 
-  reg [31:0] xcounter;
-  always @(posedge clk96)
-    if (rst)
-      xcounter <= 0;
-    else
-      if (xcounter > 96000000 - 1)
-        xcounter <= 0;
-      else 
-        xcounter <= xcounter + 1;
-
   wire fifo_full;
-  fifo uart_rx_fifo(.clk(clk96), .rst(rst), 
+  wire fifo_empty;
+  wire fifo_watermark;
+  wire [7:0] fifo_rd;
+  wire cmd_rdy;
+
+  wire [7:0] outputs;
+  wire outputs_wr;
+
+  reg parser_wr;
+
+  command_parser parser(.clk(clk96), .rst(rst),
+    .data(fifo_rd),
+    .data_wr(parser_wr),
+    .data_rdy(cmd_rdy),
+    .outputs_wr(outputs_wr),
+    .outputs_data(outputs));
+
+  always @(posedge clk96)
+    parser_wr <= !fifo_empty;
+
+  always @(posedge clk96)
+    if (outputs_wr)
+      led <= outputs;
+
+
+  fifo uart_rx_fifo(.clk(clk96), .rst(rst),
     .write_en(rx_rdy),
-    .write_data(rx_data), 
-    .read_en(xcounter == 0),
-    .read_data(led),
-    .full(fifo_full));
+    .write_data(rx_data),
+    .read_en(cmd_rdy),
+    .read_data(fifo_rd),
+    .full(fifo_full),
+    .empty(fifo_empty),
+    .almost_full(fifo_watermark));
 
-  uart_tx #(.CLK(96000000), .BAUD(115200)) uart_transmit
+  uart_tx #(.CLK(60000000), .BAUD(115200)) uart_transmit
            ( .clk(clk96), .rst(rst), .tx(uart_tx),
-             .data(value), .write(tx_write), .ready(tx_ready) );
+             .data(rx_data), .write(rx_rdy), .ready(tx_ready) );
 
-  uart_rx #(.CLK(96000000), .BAUD(115200)) uart_receive
+  uart_rx #(.CLK(60000000), .BAUD(115200)) uart_receive
            ( .clk(clk96), .rst(rst), .rx(uart_rx),
-             .data(rx_data), .read_ready(rx_rdy), .read_ack(!fifo_full));
+             .data(rx_data), .read_ready(rx_rdy), .read_ack(1)); //!fifo_full));
+
 
 endmodule
 

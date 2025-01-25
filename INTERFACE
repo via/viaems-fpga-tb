@@ -10,3 +10,16 @@ OUTPUT := 1100VVVV          // Output first four pins
 OUTPUT := 1100VVVV 0100VVVV // Output all 8 pins
 
 ADC := 1110PPPP 0VVVVVVV 000VVVVV // P selects output, V is 12bit adc value
+
+
+
+
+fixed size alternative. Each takes four cycles (max 24 update)
+DELAY  := 11DDDDDD 0DDDDDDD 0DDDDDDD 0DDDDDDD  27 bit delay
+OUTPUT := 100DDDDD 0DDDDDDD 0DDDDDDV 0VVVVVVV  8 bit output, 18 bit delay
+ADC    := 1010SSSS XXXXXXXX XXXXYYYY YYYYYYYY  2x 12 bit 
+
+DELAY  := 11DDDDDD 0DDDDDDD
+OUTPUT := 10DDDDDV 0VVVVVVV
+ADC    := 1000SSSS XXXXXXXX XXXXYYYY YYYYYYYY  2x 12 bit 
+

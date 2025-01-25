@@ -4,55 +4,51 @@ module command_parser (
 
   input wire [7:0] data,
   input wire data_wr,
-  output reg data_rdy,
+  output wire data_rdy,
 
-  output reg cmd_rdy,
-  input wire cmd_ack,
-
-  output reg cmd_delay,
-  output reg [15:0] cmd_delay_value,
-
-  output reg cmd_output,
-  output reg [7:0] cmd_output_value
+  output wire outputs_wr,
+  output wire [7:0] outputs_data
 );
 
   reg [31:0] decode_buffer;
+  reg [31:0] delay_counter;
 
-  wire byte1_is_cmd = decode_buffer[31];
-  wire byte2_is_cmd = decode_buffer[23];
-  wire byte3_is_cmd = decode_buffer[15];
+  wire is_command = decode_buffer[31];
+  wire is_delay_cmd = is_command && (decode_buffer[30] == 1'b1);
+  wire is_output_cmd = is_command && (decode_buffer[30:29] == 2'b00);
+
+  wire [7:0] output_value = {decode_buffer[8], decode_buffer[6:0]};
+  assign outputs_wr = is_output_cmd;
+  assign outputs_data = is_output_cmd ? output_value : 0;
+
+  reg [31:0] delay_value;
+  always @(*) begin
+    delay_value = 0;
+    if (is_delay_cmd)
+      delay_value = {decode_buffer[29:24], 
+                     decode_buffer[22:16], 
+                     decode_buffer[14:8],
+                     decode_buffer[6:0]};
+    else if (is_output_cmd)
+      delay_value = {decode_buffer[28:24], 
+                     decode_buffer[22:16], 
+                     decode_buffer[14:9]};
+  end
+
+  wire paused = (delay_counter != delay_value << 2);
+  assign data_rdy = !paused;
 
   always @(posedge clk)
-    if (rst)
+    if (rst) begin
       decode_buffer <= 0;
-    else
-      if (data_wr) begin
+      delay_counter <= 0;
+    end else
+      if (data_wr && !paused) begin
         decode_buffer <= {decode_buffer[23:0], data};
-        cmd_rdy <= byte2_is_cmd; // Byte1 about to become a command
-      end else 
-        cmd_rdy <= 0;
+        delay_counter <= 0;
+      end else if (paused)
+        delay_counter <= delay_counter + 1;
 
 
-  always @(*) begin
-    cmd_delay = 0;
-    cmd_delay_value = 0;
-    cmd_output = 0;
-    cmd_output_value = 0;
-
-    if (decode_buffer[31:30] == 2'b10) begin // DELAY
-        cmd_delay = 1;
-        cmd_delay_value = byte2_is_cmd ? 
-          decode_buffer[29:24] : // Single byte delay
-          {decode_buffer[29:24], decode_buffer[22:16]}; // Dual byte
-    end
-
-    if (decode_buffer[31:28] == 4'b1100) begin // OUTPUT
-        cmd_output = 1;
-        cmd_output_value = byte2_is_cmd ? 
-          decode_buffer[27:24] : // Single byte delay
-          {decode_buffer[27:24], decode_buffer[20:16]}; // Dual byte
-    end
-
-  end
 
 endmodule

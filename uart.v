@@ -59,7 +59,7 @@ module uart_tx #(
           baudtimer <= baudtimer + 1;
           tx <= shiftreg[0];
           if (baudtimer_done) begin
-            shiftreg <= {0, shiftreg[7:1]};
+            shiftreg <= {1'b0, shiftreg[7:1]};
             baudtimer <= 0;
 
             bits = bits - 1;
