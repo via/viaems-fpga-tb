@@ -13,13 +13,16 @@ module fifo (
   output wire almost_full
 );
 
-  reg [7:0] memory [1024];
-  reg [9:0] read_idx;
-  reg [9:0] write_idx;
+  reg [7:0] memory [4096];
+  reg [11:0] read_idx;
+  reg [11:0] write_idx;
 
-  assign full = (read_idx == ((write_idx + 1) % 1024));
+  assign full = (read_idx == (write_idx + 1));
   assign empty = (read_idx == write_idx);
-  assign almost_full = 0;
+
+  assign almost_full = (write_idx >= read_idx) ?
+                   (write_idx - read_idx) > 3076 :
+                   (read_idx - write_idx) < 1024 ;
 
   always @(posedge clk)
     if (rst) begin
@@ -29,11 +32,11 @@ module fifo (
     end else begin
       if (write_en && !full) begin
         memory[write_idx] <= write_data;
-        write_idx <= (write_idx + 1) % 1024;
+        write_idx <= write_idx + 1;
       end 
       if (read_en && !empty) begin
         read_data <= memory[read_idx];
-        read_idx <= (read_idx + 1) % 1024;
+        read_idx <= read_idx + 1;
       end
     end
 

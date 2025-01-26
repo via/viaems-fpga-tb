@@ -29,10 +29,11 @@ module top (
   output wire uart_tx,
   input wire uart_rx,
 
-  output reg uart_ctsn,
+  output wire uart_ctsn,
 
   output reg dbg,
-  output reg [7:0] led
+  output reg [7:0] led,
+  output reg [7:0] out
 );
 
   reg tx_write;
@@ -46,10 +47,10 @@ module top (
   reg [7:0] value;
   reg value_ready;
 
-  wire clk96;
+  wire clk60;
   wire rst;
 
-  clock clocks (.clk12(clk), .nrst(rstn), .clkout(clk96), .rst(rst));
+  clock clocks (.clk12(clk), .nrst(rstn), .clkout(clk60), .rst(rst));
 
   wire fifo_full;
   wire fifo_empty;
@@ -62,22 +63,26 @@ module top (
 
   reg parser_wr;
 
-  command_parser parser(.clk(clk96), .rst(rst),
+  command_parser parser(.clk(clk60), .rst(rst),
     .data(fifo_rd),
     .data_wr(parser_wr),
     .data_rdy(cmd_rdy),
     .outputs_wr(outputs_wr),
     .outputs_data(outputs));
 
-  always @(posedge clk96)
+  always @(posedge clk60)
     parser_wr <= !fifo_empty;
 
-  always @(posedge clk96)
-    if (outputs_wr)
+  always @(posedge clk60) begin
+    if (outputs_wr) begin
       led <= outputs;
+      out[6:0] <= outputs[6:0];
+    end
+    out[7] <= fifo_empty;
+  end
 
 
-  fifo uart_rx_fifo(.clk(clk96), .rst(rst),
+  fifo uart_rx_fifo(.clk(clk60), .rst(rst),
     .write_en(rx_rdy),
     .write_data(rx_data),
     .read_en(cmd_rdy),
@@ -86,13 +91,15 @@ module top (
     .empty(fifo_empty),
     .almost_full(fifo_watermark));
 
-  uart_tx #(.CLK(60000000), .BAUD(115200)) uart_transmit
-           ( .clk(clk96), .rst(rst), .tx(uart_tx),
-             .data(rx_data), .write(rx_rdy), .ready(tx_ready) );
+  assign uart_ctsn = fifo_watermark;
 
-  uart_rx #(.CLK(60000000), .BAUD(115200)) uart_receive
-           ( .clk(clk96), .rst(rst), .rx(uart_rx),
-             .data(rx_data), .read_ready(rx_rdy), .read_ack(1)); //!fifo_full));
+  uart_tx #(.CLK(60000000), .BAUD(4000000)) uart_transmit
+           ( .clk(clk60), .rst(rst), .tx(uart_tx),
+             .data(rx_data), .write(1'b0), .ready(tx_ready) );
+
+  uart_rx #(.CLK(60000000), .BAUD(4000000)) uart_receive
+           ( .clk(clk60), .rst(rst), .rx(uart_rx),
+             .data(rx_data), .read_ready(rx_rdy), .read_ack(!fifo_full));
 
 
 endmodule
