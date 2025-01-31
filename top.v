@@ -31,9 +31,18 @@ module top (
 
   output wire uart_ctsn,
 
-  output reg dbg,
   output reg [7:0] led,
-  output reg [7:0] out
+  output reg [7:0] out,
+
+  input wire sclk,
+  output wire miso,
+  input wire mosi,
+  input wire cs,
+
+  output reg dbg_sclk,
+  output reg dbg_miso,
+  output reg dbg_mosi,
+  output reg dbg_cs
 );
 
   reg tx_write;
@@ -61,25 +70,54 @@ module top (
   wire [7:0] outputs;
   wire outputs_wr;
 
+  wire adc_wr;
+  wire [2:0] adc_sel;
+  wire [11:0] adc1;
+  wire [11:0] adc2;
+
   reg parser_wr;
+
+  always @(posedge clk60) begin
+    dbg_sclk <= sclk;
+    dbg_mosi <= mosi;
+    dbg_cs   <= cs;
+    dbg_miso <= miso;
+  end
 
   command_parser parser(.clk(clk60), .rst(rst),
     .data(fifo_rd),
     .data_wr(parser_wr),
     .data_rdy(cmd_rdy),
     .outputs_wr(outputs_wr),
-    .outputs_data(outputs));
+    .outputs_data(outputs),
+    .adc_wr(adc_wr),
+    .adc_sel(adc_sel),
+    .adc_value_1(adc1),
+    .adc_value_2(adc2));
 
-  always @(posedge clk60)
+  always @(posedge clk60) begin
     parser_wr <= !fifo_empty;
+  end
+  
 
   always @(posedge clk60) begin
     if (outputs_wr) begin
       led <= outputs;
-      out[6:0] <= outputs[6:0];
+      out <= outputs;
     end
-    out[7] <= fifo_empty;
   end
+
+  mock_tlv2553 tlv2553(.clk(clk60), .rst(rst),
+    .sel(adc_sel),
+    .in1(adc1),
+    .in1_w(adc_wr),
+    .in2(adc2),
+    .in2_w(adc_wr),
+    .sclk(sclk),
+    .miso(miso),
+    .mosi(mosi),
+    .cs(cs),
+  );
 
 
   fifo uart_rx_fifo(.clk(clk60), .rst(rst),

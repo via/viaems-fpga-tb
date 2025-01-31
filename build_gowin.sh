@@ -8,11 +8,12 @@ yosys -l design_ys.log -p 'synth_gowin -json design.json' \
   parser.v \
   fifo.v \
   clock.v \
+  mock_tlv2553.v \
   gowinpll.v
 
 nextpnr-himbaechel --log top.tim \
-                   --device GW2AR-LV18QN88C8/I7 \
-                   --vopt family=GW2A-18C \
+                   --device GW1N-UV4LQ100C6/I5 \
+                   --vopt family=GW1N-4 \
                    --vopt cst=gowin.cst \
                    --json design.json \
                    --write design.pnr.json

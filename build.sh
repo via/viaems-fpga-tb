@@ -6,6 +6,7 @@ yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
   top.v \
   uart.v \
   parser.v \
+  mock_tlv2553.v \
   fifo.v \
   clock.v \
   pll.v
