@@ -11,7 +11,7 @@ module uart_tx #(
   input wire [7:0] data,
   input wire write,
   
-  output wire ready
+  output reg ready
 );
 
   parameter IDLE  = 2'd0;
@@ -26,13 +26,12 @@ module uart_tx #(
 
   wire baudtimer_done = (baudtimer == (CLK / BAUD) - 1);
 
-  assign ready = (state == IDLE) || (state == STOP);
-
   always @(posedge clk)
     if (rst) begin
       shiftreg <= 0;
       state <= IDLE;
       tx <= 0;
+      ready <= 0;
     end else begin
       case (state)
 
@@ -43,7 +42,9 @@ module uart_tx #(
             bits <= 8;
             state <= START;
             baudtimer <= 0;
-          end
+            ready <= 0;
+          end else 
+            ready <= 1;
         end
 
         START: begin

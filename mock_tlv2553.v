@@ -40,7 +40,6 @@ module mock_tlv2553(
 
   always @(posedge clk) begin
     if (rst) begin
-      mosi_in <= 0;
       last_mosi <= 0;
       last_cs <= 0;
       last_sclk <= 0;

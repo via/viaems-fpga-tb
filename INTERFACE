@@ -1,4 +1,9 @@
-fixed size alternative. Each takes four cycles
+Commands: Delays in clock/4 (15 MHz)
 DELAY  := 1101DDDD 0DDDDDDD 0DDDDDDD 0DDDDDDD  25 bit delay
 OUTPUT := 1100DDDD 0DDDDDDD 0DDDDDDV 0VVVVVVV  8 bit output, 17 bit delay
 ADC    := 10SSSXXX 0XXXXXXX 0XXYYYYY 0YYYYYYY
+
+
+Responses: Delays in clock (60 MHz)
+CAPTURE := 110DDDDD 0DDDDDDD 0DDDDVVV 0VVVVVVV 0VVVVVVV 0VVVVVVV
+STATUS  := 1010____

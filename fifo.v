@@ -1,28 +1,31 @@
-module fifo (
+module fifo #(
+  parameter DEPTH = 4096,
+  parameter WIDTH = 8
+  )
+  (
   input wire clk,
   input wire rst,
 
   input wire write_en,
-  input wire [7:0] write_data,
+  input wire [WIDTH - 1:0] write_data,
 
   input wire read_en,
-  output reg [7:0] read_data,
+  output reg [WIDTH - 1:0] read_data,
 
   output wire full,
   output wire empty,
   output wire almost_full
 );
 
-  reg [7:0] memory [4096];
-  reg [11:0] read_idx;
-  reg [11:0] write_idx;
+  localparam IDX_BITS = $clog2(DEPTH);
+  reg [WIDTH - 1:0] memory [DEPTH];
+  reg [IDX_BITS-1:0] read_idx;
+  reg [IDX_BITS-1:0] write_idx;
 
   assign full = (read_idx == (write_idx + 1));
   assign empty = (read_idx == write_idx);
 
-  assign almost_full = (write_idx >= read_idx) ?
-                   (write_idx - read_idx) > 3076 :
-                   (read_idx - write_idx) < 1024 ;
+  assign almost_full = ((write_idx - read_idx) >> (IDX_BITS - 2)) == 2'b11;
 
   always @(posedge clk)
     if (rst) begin
@@ -39,25 +42,4 @@ module fifo (
         read_idx <= read_idx + 1;
       end
     end
-
-
-
-//  FIFO8KB #(
-//    .DATA_WIDTH_R(9),
-//    .DATA_WIDTH_W(9),
-//    .FULLPOINTER(1024),
-//    .AFPOINTER(512)
-//    ) fifo8kb (
-//    .DI(write_data),
-//    .CLKW(clk),
-//    .WE(write_en),
-//    .AFF(almost_full),
-//    .FF(full),
-//    .EF(empty),
-//    .DO(read_data),
-//    .ORE(1'b1),
-//    .CLKR(clk),
-//    .RE(read_en)
-//    );
-
 endmodule

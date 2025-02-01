@@ -9,6 +9,7 @@ yosys -l design_ys.log -p 'synth_gowin -json design.json' \
   fifo.v \
   clock.v \
   mock_tlv2553.v \
+  capture.v \
   gowinpll.v
 
 nextpnr-himbaechel --log top.tim \
