@@ -29,12 +29,12 @@ module top (
   output wire uart_tx,
   input wire uart_rx,
 
-  output wire uart_ctsn,
+  output reg uart_ctsn,
 
   output reg [7:0] led,
   output reg [7:0] out,
 
-  input wire [3:0] switches,
+  input wire [11:0] inputs,
 
   input wire sclk,
   output wire miso,
@@ -123,7 +123,7 @@ module top (
     .empty(fifo_empty),
     .almost_full(fifo_watermark));
 
-  assign uart_ctsn = fifo_watermark;
+  always @(posedge clk60) uart_ctsn <= fifo_watermark;
 
   uart_rx #(.CLK(60000000), .BAUD(4000000)) uart_receive
            ( .clk(clk60), .rst(rst), .rx(uart_rx),
@@ -142,10 +142,11 @@ module top (
 
   wire [39:0] cap_fifo_rd_data;
   wire cap_fifo_rd_empty;
+  wire cap_fifo_rd_full;
   wire cap_encoder_rdy;
 
   capture cap(.clk(clk60), .rst(rst),
-    .inputs(switches),
+    .inputs(inputs),
     .data_wr(capture_wr),
     .data(capture_data),
     .delay(capture_delay));
@@ -156,12 +157,14 @@ module top (
     .write_data({capture_delay, capture_data}),
     .read_en(cap_encoder_rdy),
     .read_data(cap_fifo_rd_data),
-    .empty(cap_fifo_rd_empty),
+    .empty(cap_fifo_rd_empty)
   );
 
-  assign led = 0;
+  reg rd_delay;
+  always @(posedge clk60) rd_delay <= cap_encoder_rdy && !cap_fifo_rd_empty;
+
   encoder encoder(.clk(clk60), .rst(rst),
-    .capture_wr(cap_encoder_rdy && !cap_fifo_rd_empty),
+    .capture_wr(rd_delay),
     .capture_data(cap_fifo_rd_data[23:0]),
     .capture_delay(cap_fifo_rd_data[39:24]),
     .capture_rdy(cap_encoder_rdy),
