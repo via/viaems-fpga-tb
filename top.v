@@ -98,6 +98,7 @@ module top (
   always @(posedge clk60) begin
     if (outputs_wr) begin
       out <= outputs;
+      led <= outputs;
     end
   end
 
@@ -125,7 +126,7 @@ module top (
 
   always @(posedge clk60) uart_ctsn <= fifo_watermark;
 
-  uart_rx #(.CLK(60000000), .BAUD(4000000)) uart_receive
+  uart_rx #(.CLK(60000000), .BAUD(12000000)) uart_receive
            ( .clk(clk60), .rst(rst), .rx(uart_rx),
              .data(rx_data), .read_ready(rx_rdy), .read_ack(!fifo_full));
 
@@ -174,7 +175,7 @@ module top (
   );
 
 
-  uart_tx #(.CLK(60000000), .BAUD(4000000)) uart_transmit
+  uart_tx #(.CLK(60000000), .BAUD(12000000)) uart_transmit
            ( .clk(clk60), .rst(rst), .tx(uart_tx),
              .data(tx_data), .write(tx_wr), .ready(tx_ready) );
 

@@ -61,7 +61,7 @@ def produce_trigger(delay, trigger):
 
 #sys.stdout.buffer.write(encode_adc(0, 0xae3, 0x246))
 sys.stdout.buffer.write(encode_adc(1, 1170, 0))
-#sys.stdout.buffer.write(encode_adc(5, 2048, 2048))
+sys.stdout.buffer.write(encode_adc(5, 2048, 2048))
 while True:
     sys.stdout.buffer.write(encode_adc(1, 1170, 0))
     sys.stdout.buffer.write(encode_delay(int(15000000/2)))
