@@ -131,8 +131,6 @@ module top (
              .data(rx_data), .read_ready(rx_rdy), .read_ack(!fifo_full));
 
 
-
-
   wire capture_wr;
   wire [23:0] capture_data;
   wire [15:0] capture_delay;
@@ -147,7 +145,7 @@ module top (
   wire cap_encoder_rdy;
 
   capture cap(.clk(clk60), .rst(rst),
-    .inputs(inputs),
+    .inputs({out[1:0], 10'b0, inputs[11:0]}),
     .data_wr(capture_wr),
     .data(capture_data),
     .delay(capture_delay));

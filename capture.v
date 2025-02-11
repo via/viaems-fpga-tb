@@ -9,16 +9,17 @@ module capture(
   output reg [15:0] delay
   );
 
-  reg [23:0] input_stages[3:0];
+  reg [23:0] input_stages[4:0];
   reg [15:0] counter;
 
   always @(posedge clk) begin
+    input_stages[4] <= input_stages[3];
     input_stages[3] <= input_stages[2];
     input_stages[2] <= input_stages[1];
     input_stages[1] <= input_stages[0];
     input_stages[0] <= inputs;
 
-    if ((input_stages[3] != input_stages[2]) ||
+    if ((input_stages[4] != input_stages[2]) ||
         (counter == 16'hFFFF)) begin
       data_wr <= 1;
       data <= input_stages[2];
