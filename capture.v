@@ -18,18 +18,19 @@ module capture(
     input_stages[2] <= input_stages[1];
     input_stages[1] <= input_stages[0];
     input_stages[0] <= inputs;
+  end
 
-    if ((input_stages[4] != input_stages[2]) ||
-        (counter == 16'hFFFF)) begin
+  always @(posedge clk) begin
+    if ((input_stages[4] != input_stages[2]) || (counter == 16'hFFFF)) begin
       data_wr <= 1;
       data <= input_stages[2];
       delay <= counter;
       counter <= 0;
     end else begin
-      counter <= counter + 1;
       data_wr <= 0;
       data <= 0;
       delay <= 0;
+      counter <= counter + 1;
     end
   end
 endmodule

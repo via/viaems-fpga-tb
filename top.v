@@ -151,16 +151,17 @@ module top (
     .delay(capture_delay));
       
 
+  reg rd_delay;
+  always @(posedge clk60) rd_delay <= cap_encoder_rdy && !cap_fifo_rd_empty;
+
   fifo #(.DEPTH(4096), .WIDTH(40)) capture_fifo(.clk(clk60), .rst(rst),
     .write_en(capture_wr),
     .write_data({capture_delay, capture_data}),
-    .read_en(cap_encoder_rdy),
+    .read_en(cap_encoder_rdy && !cap_fifo_rd_empty),
     .read_data(cap_fifo_rd_data),
     .empty(cap_fifo_rd_empty)
   );
 
-  reg rd_delay;
-  always @(posedge clk60) rd_delay <= cap_encoder_rdy && !cap_fifo_rd_empty;
 
   encoder encoder(.clk(clk60), .rst(rst),
     .capture_wr(rd_delay),
