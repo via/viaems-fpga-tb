@@ -1,7 +1,5 @@
 set -e
 
-SERV=/home/via/dev/serv
-
 yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
   top.v \
   core.v \
@@ -21,4 +19,4 @@ nextpnr-machxo2 --log top.tim \
                 --lpf machxo2.lpf \
                 --textcfg design.config
 
-ecppack --input design.config  --bit design.bit
+ecppack --input design.config  --bit design.bit --svf design.svf

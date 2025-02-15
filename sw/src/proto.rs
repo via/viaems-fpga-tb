@@ -150,8 +150,9 @@ pub fn parse_scenario_inputs(file: File) -> Vec<DeviceCommand> {
                     commands.push(DeviceCommand::Delay((this_delay - 1) as u32));
                     remaining_delay -= this_delay;
                 }
-                commands.push(DeviceCommand::Output{delay: 0, outputs: this_triggers});
-                commands.push(DeviceCommand::Output{delay: 0, outputs: 0});
+                // MSB is NRST, always keep it high
+                commands.push(DeviceCommand::Output{delay: 0, outputs: 0x80 | this_triggers});
+                commands.push(DeviceCommand::Output{delay: 0, outputs: 0x80});
                 accumulated_delay = 0;
             },
             _ => { },
