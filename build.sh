@@ -4,6 +4,7 @@ SERV=/home/via/dev/serv
 
 yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
   top.v \
+  core.v \
   uart.v \
   parser.v \
   mock_tlv2553.v \

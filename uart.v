@@ -28,10 +28,12 @@ module uart_tx #(
 
   always @(posedge clk)
     if (rst) begin
-      shiftreg <= 0;
-      state <= IDLE;
       tx <= 0;
       ready <= 0;
+      bits <= 0;
+      state <= IDLE;
+      shiftreg <= 0;
+      baudtimer <= 0;
     end else begin
       case (state)
 

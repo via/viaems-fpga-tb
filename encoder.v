@@ -5,7 +5,7 @@ module encoder(
   input wire capture_wr,
   input wire [23:0] capture_data,
   input wire [15:0] capture_delay,
-  output reg capture_rdy,
+  output wire capture_rdy,
 
   input wire uart_tx_rdy,
   output reg [7:0] uart_tx_data,
@@ -18,6 +18,7 @@ module encoder(
   wire in_progress = (total_bytes != current_byte);
 
   assign uart_tx_wr = (in_progress && uart_tx_rdy);
+  assign capture_rdy = !in_progress && !capture_wr;
 
   always @(posedge clk) begin
     if (rst) begin
@@ -26,7 +27,6 @@ module encoder(
       current_byte <= 0;
       uart_tx_data <= 0;
     end else begin
-      capture_rdy <= !in_progress;
 
       if (!in_progress && capture_wr) begin
         total_bytes <= 6;

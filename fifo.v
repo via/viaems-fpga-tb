@@ -18,7 +18,7 @@ module fifo #(
 );
 
   localparam IDX_BITS = $clog2(DEPTH);
-  reg [WIDTH - 1:0] memory [DEPTH];
+  reg [WIDTH - 1:0] memory [DEPTH-1:0];
   reg [IDX_BITS-1:0] read_idx;
   reg [IDX_BITS-1:0] write_idx;
 

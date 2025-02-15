@@ -1,12 +1,16 @@
-module top_tb();
+module core_tb();
   reg clk;
   reg rst;
-
-
   reg rxd;
-
+  wire txd;
+  wire ctsn;
   wire [7:0] outputs;
-  wire nrst = !rst;
+  reg [21:0] inputs;
+
+  reg sclk;
+  reg mosi;
+  reg cs;
+  wire miso;
 
   
   initial begin
@@ -14,11 +18,34 @@ module top_tb();
     clk = 0;
     rst = 1;
     rxd = 1;
+    inputs = 0;
+    sclk = 0;
+    mosi = 0;
+    cs = 1;
+
     forever #5 clk = ~clk;
   end
 
-  top dut(.clk(clk), .rstn(nrst), .uart_rx(rxd),
-          .led(outputs));
+  core dut(.clk(clk),
+           .rst(rst),
+           .uart_tx(txd),
+           .uart_rx(rxd),
+           .uart_ctsn(ctsn),
+           .out(outputs),
+           .inputs(inputs),
+           .sclk(sclk),
+           .miso(miso),
+           .mosi(mosi),
+           .cs(cs)
+         );
+
+  initial begin
+    #500 inputs = 22'h2;
+    #10 inputs = 22'h3;
+    #500 inputs = 22'h0;
+    #500 inputs = 22'h2;
+    #500 inputs = 22'h0;
+  end
 
 
   initial begin
@@ -164,6 +191,8 @@ module top_tb();
   
       #1040 rxd = 1;  // Idle
       #1040 rxd = 1;  // Idle
+
+      #1040 $finish;
     end
 
   end
