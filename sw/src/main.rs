@@ -1,28 +1,36 @@
 use std::fs::File;
 use std::io::Write;
-use clap::Parser;
+use gumdrop::Options;
 
 mod proto;
 mod usb;
 
-#[derive(Parser)]
+#[derive(Debug, Options)]
 struct Cli {
-  #[arg(short, long)]
-  scenario: Option<String>,
+    help: bool,
 
-  #[arg(short, long)]
-  output: Option<String>,
+    #[options(help = "Scenario text input to submit to test harness")]
+    scenario: Option<String>,
 
-  #[arg(long = "cmd-outputs", help="Set outputs to hex value")]
-  cmd_outputs: Option<String>,
+    #[options(help = "Output file for received pin events from test harness")]
+    output: Option<String>,
+
+    #[options(
+        no_short,
+        long = "cmd-outputs",
+        help = "Submit a single output command"
+    )]
+    cmd_outputs: Option<String>,
 }
 
 fn main() {
-
-    let args = Cli::parse();
+    let args = Cli::parse_args_default_or_exit();
     if let Some(outputs) = args.cmd_outputs {
         let parsed = u8::from_str_radix(&outputs, 16).unwrap();
-        let cmd = proto::DeviceCommand::Output{delay: 0, outputs: parsed};
+        let cmd = proto::DeviceCommand::Output {
+            delay: 0,
+            outputs: parsed,
+        };
         usb::do_exchange(vec![cmd]);
     } else if let Some(scenario) = args.scenario {
         let inputs = proto::parse_scenario_inputs(File::open(scenario).unwrap());
@@ -39,5 +47,4 @@ fn main() {
             }
         }
     }
-    
 }

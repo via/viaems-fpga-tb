@@ -1,7 +1,6 @@
 use nusb::transfer::{Control, RequestBuffer};
-use futures_lite::future::block_on;
+use futures_lite::future::{block_on, zip};
 use std::time::{Duration, Instant};
-use futures_concurrency::prelude::*;
 
 use crate::proto::{DeviceCommand, DeviceResponse};
 
@@ -78,7 +77,7 @@ pub fn do_exchange(commands: Vec<DeviceCommand>) -> Vec<DeviceResponse> {
         }
     };
 
-    block_on(async{(writeloop, readloop).join().await});
+    block_on(zip(writeloop, readloop));
 
     results
 }
