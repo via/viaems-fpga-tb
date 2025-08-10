@@ -35,6 +35,9 @@ module core (
 
   reg parser_wr;
 
+  reg parser_underflow;
+  reg capture_overflow;
+
   command_parser parser(.clk(clk), .rst(rst),
     .data(fifo_rd),
     .data_wr(parser_wr),

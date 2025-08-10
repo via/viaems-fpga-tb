@@ -4,6 +4,8 @@ SERV=/home/via/dev/serv
 
 yosys -l design_ys.log -p 'synth_gowin -json design.json' \
   top.v \
+  core.v \
+  encoder.v \
   uart.v \
   parser.v \
   fifo.v \

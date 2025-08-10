@@ -31,20 +31,14 @@ module top (
 
   output reg uart_ctsn,
 
-  output reg [7:0] led,
   output reg [7:0] out,
 
-  input wire [11:0] inputs,
+  input wire [21:0] inputs,
 
   input wire sclk,
   output wire miso,
   input wire mosi,
   input wire cs,
-
-  output reg dbg_sclk,
-  output reg dbg_miso,
-  output reg dbg_mosi,
-  output reg dbg_cs
 );
 
   wire clk60;
@@ -57,19 +51,12 @@ module top (
               .uart_rx(uart_rx),
               .uart_ctsn(uart_ctsn),
               .out(out),
-              .inputs({10'b0, inputs}),
+              .inputs(inputs),
               .sclk(sclk),
               .miso(miso),
               .mosi(mosi),
               .cs(cs) );
 
-
-  always @(posedge clk60) begin
-    dbg_sclk <= sclk;
-    dbg_mosi <= mosi;
-    dbg_cs   <= cs;
-    dbg_miso <= miso;
-  end
 
 endmodule
 
