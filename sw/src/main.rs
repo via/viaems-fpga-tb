@@ -1,6 +1,6 @@
+use gumdrop::Options;
 use std::fs::File;
 use std::io::Write;
-use gumdrop::Options;
 
 mod proto;
 mod usb;

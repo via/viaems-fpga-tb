@@ -1,7 +1,7 @@
 set -e
 
 yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
-  top.v \
+  top-breakoutboard.v \
   core.v \
   uart.v \
   parser.v \

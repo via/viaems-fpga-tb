@@ -7,9 +7,9 @@ module encoder(
   input wire [15:0] capture_delay,
   output wire capture_rdy,
 
-  input wire uart_tx_rdy,
+  input wire uart_tx_wr,
   output reg [7:0] uart_tx_data,
-  output wire uart_tx_wr
+  output wire uart_tx_wr_ready
 );
   reg [4:0] total_bytes;
   reg [4:0] current_byte;
@@ -17,7 +17,7 @@ module encoder(
 
   wire in_progress = (total_bytes != current_byte);
 
-  assign uart_tx_wr = (in_progress && uart_tx_rdy);
+  assign uart_tx_wr_ready = in_progress;
   assign capture_rdy = !in_progress && !capture_wr;
 
   always @(posedge clk) begin
@@ -50,7 +50,7 @@ module encoder(
 //                   8'h8F
 //                   };
 
-     end else if (in_progress && uart_tx_rdy) begin
+     end else if (in_progress && uart_tx_wr) begin
         uart_tx_data <= payload[63:56];
         payload <= {payload[55:0], 8'b0};
         current_byte <= current_byte + 1;

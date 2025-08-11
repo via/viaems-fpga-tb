@@ -33,7 +33,7 @@ module top (
 
   output reg [7:0] out,
 
-  input wire [21:0] inputs,
+  input wire [11:0] inputs,
 
   input wire sclk,
   output wire miso,
