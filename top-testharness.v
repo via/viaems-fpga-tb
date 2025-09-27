@@ -8,7 +8,7 @@ module top (
   input ft_rxf,
   inout [7:0] ft_d,
 
-  inout [15:0] A,
+  input [15:0] A,
   inout [15:0] B,
 
   input wire sclk,
@@ -20,11 +20,10 @@ module top (
   wire [7:0] outputs;
   wire [31:0] inputs;
 
-  // B[15:8] is outputs, B[7:] + A[15:0] is input pins
-  assign inputs = {A, B};
+  assign inputs = {16'h0000, A};
 
-  assign A = 16'hZZZZ;
-  assign B = {8'hZZ, outputs}; 
+  // A[15:0] are inputs, B[15:8] are outputs
+  assign B = {outputs, 8'hZZ};
 
   core core ( 
               .ft_clkout(ft_clkout),

@@ -103,7 +103,7 @@ module core (
   wire cap_encoder_rdy;
 
   capture cap(.clk(ft_clkout), .rst(rst),
-    .inputs({out[1:0], inputs}),
+    .inputs({out[1:0], inputs[21:0]}),
     .data_wr(capture_wr),
     .data(capture_data),
     .delay(capture_delay));
