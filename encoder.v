@@ -15,7 +15,7 @@ module encoder(
   reg [4:0] total_bytes;
   reg [4:0] current_byte;
   reg [63:0] payload;
-  reg overflowed = 0;
+  reg overflowed;
 
   wire in_progress = (total_bytes != current_byte);
 
@@ -27,6 +27,7 @@ module encoder(
       payload <= 0;
       total_bytes <= 0;
       current_byte <= 0;
+      overflowed <= 0;
     end else begin
 
       if (capture_overflow)

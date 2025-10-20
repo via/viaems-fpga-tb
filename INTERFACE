@@ -2,6 +2,7 @@ Commands: Delays in clock/4 (15 MHz)
 DELAY  := 1101DDDD 0DDDDDDD 0DDDDDDD 0DDDDDDD  25 bit delay
 OUTPUT := 1100DDDD 0DDDDDDD 0DDDDDDV 0VVVVVVV  8 bit output, 17 bit delay
 ADC    := 10SSSXXX 0XXXXXXX 0XXYYYYY 0YYYYYYY
+RESET  := 11110000 00000000 00000000 00000000  
 
 
 Responses: Delays in clock (60 MHz)
@@ -9,11 +10,12 @@ CAPTURE := 110DDDDD 0DDDDDDD 0DDDDVVV 0VVVVVVV 0VVVVVVV 0VVVVVVV
 STATUS  := 1010____
 ERROR   := 1011XXXX
                0000 - OVERFLOW
+               0001 - UNDERFLOW
 
 
 
 
-16 bit alternatives
+16 bit alternatives (not implemented)
 DELAY  := 1DDDDDDD 0DDDDDDD   14 bit delay
 OUTPUT := 1______V 0VVVVVVV   8 bit output value
 ADC   :=  1SSSS 0XXXXXXX
@@ -29,8 +31,3 @@ ADC     := 101000SS 0SSVVVVV 0VVVVVVV     12 bit ADC value with 4 bit selector
 32 bit outputs and 16 12-bit adcs can be set with 4x OUTPUT8 and 16x ADC = 4x2
    +16x3 = 56 bytes, so at 20 MB/s can sustain 350k sets per second.
   
-
-12 * 16 + 12 * 1 + 32 = 
-
-
-

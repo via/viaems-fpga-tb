@@ -12,7 +12,9 @@ module command_parser (
   output wire adc_wr,
   output wire [2:0] adc_sel,
   output wire [11:0] adc_value_1,
-  output wire [11:0] adc_value_2
+  output wire [11:0] adc_value_2,
+
+  output wire reset_wr,
 );
 
   reg [31:0] decode_buffer;
@@ -25,6 +27,9 @@ module command_parser (
   wire is_adc_cmd = is_command && (decode_buffer[30] == 1'b0);
   wire is_delay_cmd = is_command && (decode_buffer[30:28] == 3'b101);
   wire is_output_cmd = is_command && (decode_buffer[30:28] == 3'b100);
+  wire is_reset_cmd = is_command && (decode_buffer[31:0] == 32'hF0000000);
+
+  assign reset_wr = is_reset_cmd;
 
   wire [7:0] output_value = {decode_buffer[8], decode_buffer[6:0]};
   assign outputs_wr = is_output_cmd;
