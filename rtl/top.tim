@@ -1,0 +1,402 @@
+Warning: net 'clk12' does not exist in design, ignoring clock constraint
+Info: constraining clock net 'ft_clkout' to 60.00 MHz
+
+Info: Logic utilisation before packing:
+Info:     Total LUT4s:       378/ 9400     4%
+Info:         logic LUTs:    248/ 9400     2%
+Info:         carry LUTs:     94/ 9400     1%
+Info:           RAM LUTs:     24/ 1175     2%
+Info:          RAMW LUTs:     12/ 2350     0%
+
+Info:      Total DFFs:       345/ 9400     3%
+
+Info: Packing IOs..
+Info: $ft_d[7]$iobuf_i: ft_d_$_TBUF__Y.Y
+Info: pin 'ft_d[7]$tr_io' constrained to Bel 'X0/Y29/PIOA'.
+Info: $ft_d[6]$iobuf_i: ft_d_$_TBUF__Y_1.Y
+Info: pin 'ft_d[6]$tr_io' constrained to Bel 'X0/Y29/PIOB'.
+Info: $ft_d[5]$iobuf_i: ft_d_$_TBUF__Y_2.Y
+Info: pin 'ft_d[5]$tr_io' constrained to Bel 'X0/Y30/PIOA'.
+Info: $ft_d[4]$iobuf_i: ft_d_$_TBUF__Y_3.Y
+Info: pin 'ft_d[4]$tr_io' constrained to Bel 'X0/Y30/PIOB'.
+Info: $ft_d[3]$iobuf_i: ft_d_$_TBUF__Y_4.Y
+Info: pin 'ft_d[3]$tr_io' constrained to Bel 'X0/Y30/PIOC'.
+Info: $ft_d[2]$iobuf_i: ft_d_$_TBUF__Y_5.Y
+Info: pin 'ft_d[2]$tr_io' constrained to Bel 'X6/Y31/PIOA'.
+Info: $ft_d[1]$iobuf_i: ft_d_$_TBUF__Y_6.Y
+Info: pin 'ft_d[1]$tr_io' constrained to Bel 'X6/Y31/PIOB'.
+Info: $ft_d[0]$iobuf_i: ft_d_$_TBUF__Y_7.Y
+Info: pin 'ft_d[0]$tr_io' constrained to Bel 'X15/Y31/PIOA'.
+Info: $B[15]$iobuf_i: B_TRELLIS_FF_Q.Q
+Info: pin 'B[15]$tr_io' constrained to Bel 'X15/Y31/PIOB'.
+Info: $B[14]$iobuf_i: B_TRELLIS_FF_Q_1.Q
+Info: pin 'B[14]$tr_io' constrained to Bel 'X17/Y31/PIOA'.
+Info: $B[13]$iobuf_i: B_TRELLIS_FF_Q_2.Q
+Info: pin 'B[13]$tr_io' constrained to Bel 'X17/Y31/PIOB'.
+Info: $B[12]$iobuf_i: B_TRELLIS_FF_Q_3.Q
+Info: pin 'B[12]$tr_io' constrained to Bel 'X21/Y31/PIOA'.
+Info: $B[11]$iobuf_i: B_TRELLIS_FF_Q_4.Q
+Info: pin 'B[11]$tr_io' constrained to Bel 'X21/Y31/PIOB'.
+Info: $B[10]$iobuf_i: B_TRELLIS_FF_Q_5.Q
+Info: pin 'B[10]$tr_io' constrained to Bel 'X28/Y31/PIOA'.
+Info: $B[9]$iobuf_i: B_TRELLIS_FF_Q_6.Q
+Info: pin 'B[9]$tr_io' constrained to Bel 'X28/Y31/PIOB'.
+Info: $B[8]$iobuf_i: B_TRELLIS_FF_Q_7.Q
+Info: pin 'B[8]$tr_io' constrained to Bel 'X31/Y31/PIOA'.
+Info: pin 'B[7]$tr_io' constrained to Bel 'X34/Y31/PIOA'.
+Info: pin 'B[6]$tr_io' constrained to Bel 'X34/Y31/PIOB'.
+Info: pin 'B[5]$tr_io' constrained to Bel 'X40/Y31/PIOA'.
+Info: pin 'B[4]$tr_io' constrained to Bel 'X40/Y31/PIOB'.
+Info: pin 'B[3]$tr_io' constrained to Bel 'X45/Y31/PIOA'.
+Info: pin 'B[2]$tr_io' constrained to Bel 'X45/Y31/PIOB'.
+Info: pin 'B[1]$tr_io' constrained to Bel 'X48/Y28/PIOA'.
+Info: pin 'B[0]$tr_io' constrained to Bel 'X48/Y21/PIOB'.
+Info: pin 'sclk$tr_io' constrained to Bel 'X48/Y17/PIOA'.
+Info: pin 'mosi$tr_io' constrained to Bel 'X48/Y21/PIOA'.
+Info: pin 'miso$tr_io' constrained to Bel 'X48/Y17/PIOB'.
+Info: pin 'ft_wr$tr_io' constrained to Bel 'X10/Y0/PIOB'.
+Info: pin 'ft_txe$tr_io' constrained to Bel 'X0/Y25/PIOB'.
+Info: pin 'ft_rxf$tr_io' constrained to Bel 'X0/Y27/PIOB'.
+Info: pin 'ft_rd$tr_io' constrained to Bel 'X0/Y25/PIOA'.
+Info: pin 'ft_oe$tr_io' constrained to Bel 'X10/Y0/PIOA'.
+Info: pin 'ft_clkout$tr_io' constrained to Bel 'X0/Y27/PIOA'.
+Info: pin 'cs$tr_io' constrained to Bel 'X48/Y12/PIOB'.
+Info: pin 'A[15]$tr_io' constrained to Bel 'X48/Y12/PIOA'.
+Info: pin 'A[14]$tr_io' constrained to Bel 'X48/Y5/PIOA'.
+Info: pin 'A[13]$tr_io' constrained to Bel 'X48/Y3/PIOB'.
+Info: pin 'A[12]$tr_io' constrained to Bel 'X48/Y3/PIOA'.
+Info: pin 'A[11]$tr_io' constrained to Bel 'X48/Y2/PIOC'.
+Info: pin 'A[10]$tr_io' constrained to Bel 'X48/Y2/PIOB'.
+Info: pin 'A[9]$tr_io' constrained to Bel 'X48/Y2/PIOA'.
+Info: pin 'A[8]$tr_io' constrained to Bel 'X38/Y0/PIOB'.
+Info: pin 'A[7]$tr_io' constrained to Bel 'X38/Y0/PIOA'.
+Info: pin 'A[6]$tr_io' constrained to Bel 'X37/Y0/PIOB'.
+Info: pin 'A[5]$tr_io' constrained to Bel 'X37/Y0/PIOA'.
+Info: pin 'A[4]$tr_io' constrained to Bel 'X27/Y0/PIOB'.
+Info: pin 'A[3]$tr_io' constrained to Bel 'X27/Y0/PIOA'.
+Info: pin 'A[2]$tr_io' constrained to Bel 'X26/Y0/PIOD'.
+Info: pin 'A[1]$tr_io' constrained to Bel 'X22/Y0/PIOB'.
+Info: pin 'A[0]$tr_io' constrained to Bel 'X22/Y0/PIOA'.
+Info: Packing constants..
+Info: Packing carries...
+Info: Packing LUTs...
+Info: Packing LUT5-7s...
+Info: Packing FFs...
+Info:     182 FFs paired with LUTs.
+Info: Promoting globals...
+Info:      promoting clock net 'ft_clkout$TRELLIS_IO_IN'
+Info: Placing globals...
+Info:     constraining ft_clkout$TRELLIS_IO_IN$glb_clk$drv_DCCA 'DCCA' to bel 'X24/Y15/DCC0'
+Info: Generating derived timing constraints...
+Info:     Derived frequency constraint of 60.00 MHz for net ft_clkout$TRELLIS_IO_IN$glb_clk
+Info: Checksum: 0x898dee80
+
+Info: Device utilisation:
+Info: 	                 GSR:       0/      1     0%
+Info: 	          TRELLIS_FF:     345/   9400     3%
+Info: 	          TRELLIS_IO:      50/    384    13%
+Info: 	        TRELLIS_COMB:     416/   9400     4%
+Info: 	        TRELLIS_RAMW:       6/   1175     0%
+Info: 	             EHXPLLJ:       0/      2     0%
+Info: 	               DP8KC:       9/     48    18%
+Info: 	                DCCA:       1/      8    12%
+Info: 	                DCMA:       0/      2     0%
+Info: 	               JTAGF:       0/      1     0%
+Info: 	               PCNTR:       0/      1     0%
+Info: 	               SEDFA:       0/      1     0%
+Info: 	               START:       0/      1     0%
+Info: 	               TSALL:       0/      1     0%
+Info: 	             CLKDIVC:       0/      4     0%
+Info: 	           ECLKSYNCA:       0/      4     0%
+Info: 	        ECLKBRIDGECS:       0/      2     0%
+Info: 	             DLLDELC:       0/      7     0%
+Info: 	            PLLREFCS:       0/      2     0%
+Info: 	            CLKFBBUF:       0/      2     0%
+Info: 	             DQSDLLC:       0/      2     0%
+Info: 	             IOLOGIC:       0/    192     0%
+Info: 	            BIOLOGIC:       0/     24     0%
+Info: 	           BSIOLOGIC:       0/     24     0%
+Info: 	            TIOLOGIC:       0/     24     0%
+Info: 	           TSIOLOGIC:       0/     24     0%
+Info: 	            RIOLOGIC:       0/     96     0%
+Info: 	                OSCJ:       0/      1     0%
+Info: 	                EFBB:       0/      1     0%
+
+Info: Placed 51 cells based on constraints.
+Info: Creating initial analytic placement for 443 cells, random placement wirelen = 20754.
+Info:     at initial placer iter 0, wirelen = 1926
+Info:     at initial placer iter 1, wirelen = 1727
+Info:     at initial placer iter 2, wirelen = 1685
+Info:     at initial placer iter 3, wirelen = 1701
+Info: Running main analytical placer, max placement attempts per cell = 85491.
+Info:     at iteration #1, type ALL: wirelen solved = 1667, spread = 3844, legal = 4152; time = 0.01s
+Info:     at iteration #2, type ALL: wirelen solved = 1764, spread = 3812, legal = 3961; time = 0.01s
+Info:     at iteration #3, type ALL: wirelen solved = 1782, spread = 3785, legal = 4366; time = 0.01s
+Info:     at iteration #4, type ALL: wirelen solved = 1780, spread = 3729, legal = 4072; time = 0.01s
+Info:     at iteration #5, type ALL: wirelen solved = 1824, spread = 3832, legal = 3854; time = 0.01s
+Info:     at iteration #6, type ALL: wirelen solved = 1833, spread = 3773, legal = 4044; time = 0.01s
+Info:     at iteration #7, type ALL: wirelen solved = 1816, spread = 3960, legal = 4315; time = 0.01s
+Info:     at iteration #8, type ALL: wirelen solved = 1855, spread = 4246, legal = 4365; time = 0.01s
+Info:     at iteration #9, type ALL: wirelen solved = 1945, spread = 4459, legal = 4497; time = 0.01s
+Info:     at iteration #10, type ALL: wirelen solved = 1967, spread = 4401, legal = 4837; time = 0.01s
+Info: HeAP Placer Time: 0.14s
+Info:   of which solving equations: 0.10s
+Info:   of which spreading cells: 0.01s
+Info:   of which strict legalisation: 0.01s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 240, wirelen = 3854
+Info:   at iteration #5: temp = 0.000000, timing cost = 149, wirelen = 3315
+Info:   at iteration #10: temp = 0.000000, timing cost = 155, wirelen = 3292
+Info:   at iteration #15: temp = 0.000000, timing cost = 150, wirelen = 3160
+Info:   at iteration #16: temp = 0.000000, timing cost = 136, wirelen = 3183 
+Info: SA placement time 0.25s
+
+Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 70.99 MHz (PASS at 60.00 MHz)
+
+Info: Max delay <async>                                 -> <async>                                : 9.58 ns
+Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 10.84 ns
+Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 10.14 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 2 endpoint(s)
+Info:          + represents [1,2) endpoint(s)
+Info: [  2580,   3234) |*+
+Info: [  3234,   3888) |*****+
+Info: [  3888,   4542) |******+
+Info: [  4542,   5196) |*****************+
+Info: [  5196,   5850) |******************+
+Info: [  5850,   6504) |****************+
+Info: [  6504,   7158) |********************+
+Info: [  7158,   7812) |**********+
+Info: [  7812,   8466) |***+
+Info: [  8466,   9120) |**+
+Info: [  9120,   9774) |************+
+Info: [  9774,  10428) |***********************+
+Info: [ 10428,  11082) |**********+
+Info: [ 11082,  11736) |*********+
+Info: [ 11736,  12390) |********************************************* 
+Info: [ 12390,  13044) |*************************+
+Info: [ 13044,  13698) |****************************+
+Info: [ 13698,  14352) |************************************************************ 
+Info: [ 14352,  15006) |********************************************************+
+Info: [ 15006,  15660) |************************************************+
+Info: Checksum: 0x2dfe898d
+Info: Routing globals...
+Info:     routed net 'ft_clkout$TRELLIS_IO_IN$glb_clk' using global resources
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 2348 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:       1000 |      439        560 |  439   560 |      1870|       0.09       0.09|
+Info:       2000 |     1058        941 |  619   381 |      1572|       0.08       0.17|
+Info:       3000 |     1705       1283 |  647   342 |      1311|       0.09       0.26|
+Info:       4000 |     2068       1907 |  363   624 |       773|       0.11       0.36|
+Info:       5000 |     2475       2477 |  407   570 |       300|       0.11       0.47|
+Info:       5493 |     2598       2834 |  123   357 |         0|       0.29       0.77|
+Info: Routing complete.
+Info: Router1 time 0.77s
+Info: Checksum: 0x14cafdc0
+
+Info: Critical path report for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk' (posedge -> posedge):
+Info:       type curr  total name
+Info:   clk-to-q  0.41  0.41 Source core.parser.decode_buffer_TRELLIS_FF_Q_2.Q
+Info:    routing  0.74  1.15 Net core.adc_sel[2] (16,26) -> (16,26)
+Info:                          Sink core.parser.is_output_cmd_LUT4_Z_C_LUT4_Z.C
+Info:                          Defined in:
+Info:                               mock_tlv2553.v:5.20-5.23
+Info:      logic  0.45  1.60 Source core.parser.is_output_cmd_LUT4_Z_C_LUT4_Z.F
+Info:    routing  1.03  2.63 Net core.parser.is_output_cmd_LUT4_Z_C[1] (16,26) -> (17,26)
+Info:                          Sink core.parser.is_output_cmd_LUT4_Z.C
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  3.08 Source core.parser.is_output_cmd_LUT4_Z.F
+Info:    routing  2.22  5.31 Net core.adc_wr_LUT4_Z_D_LUT4_C_Z[2] (17,26) -> (17,27)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A_LUT4_Z_1.C
+Info:                          Defined in:
+Info:                               parser.v:9.15-9.25
+Info:      logic  0.45  5.76 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A_LUT4_Z_1.F
+Info:    routing  1.11  6.86 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A[0] (17,27) -> (17,25)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2.A
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  7.32 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2.F
+Info:    routing  0.99  8.31 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A[3] (17,25) -> (15,25)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  8.76 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2.F
+Info:    routing  0.98  9.73 Net core.parser.paused_LUT4_Z_A[3] (15,25) -> (15,25)
+Info:                          Sink core.parser.paused_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  10.19 Source core.parser.paused_LUT4_Z.F
+Info:    routing  0.56  10.74 Net core.parser_wr_TRELLIS_FF_Q_DI[0] (15,25) -> (15,26)
+Info:                          Sink core.parser_wr_LUT4_D.C
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  11.19 Source core.parser_wr_LUT4_D.F
+Info:    routing  2.67  13.86 Net core.parser_wr_LUT4_D_Z (15,26) -> (15,25)
+Info:                          Sink core.parser.decode_buffer_TRELLIS_FF_Q_6.CE
+Info:                          Defined in:
+Info:                               parser.v:68.11-68.29
+Info:      setup  0.27  14.14 Source core.parser.decode_buffer_TRELLIS_FF_Q_6.CE
+Info: 3.84 ns logic, 10.29 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source ft_rxf$tr_io.O
+Info:    routing  3.04  3.04 Net ft_rxf$TRELLIS_IO_IN (0,27) -> (11,24)
+Info:                          Sink ft_rxf_LUT4_C.C
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  3.49 Source ft_rxf_LUT4_C.F
+Info:    routing  2.58  6.07 Net ft_rxf_LUT4_C_Z (11,24) -> (1,25)
+Info:                          Sink ft_rd_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  6.53 Source ft_rd_LUT4_Z.F
+Info:    routing  1.23  7.76 Net ft_rd$TRELLIS_IO_OUT (1,25) -> (0,25)
+Info:                          Sink ft_rd$tr_io.I
+Info:                          Defined in:
+Info:                               top.v:5.10-5.15
+Info: 0.90 ns logic, 6.85 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge ft_clkout$TRELLIS_IO_IN$glb_clk':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source ft_txe$tr_io.O
+Info:    routing  2.75  2.75 Net ft_txe$TRELLIS_IO_IN (0,25) -> (10,10)
+Info:                          Sink ft_txe_LUT4_D.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  3.20 Source ft_txe_LUT4_D.F
+Info:    routing  2.42  5.62 Net ft_txe_LUT4_D_Z (10,10) -> (20,9)
+Info:                          Sink ft_txe_LUT4_D_Z_LUT4_D.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  6.07 Source ft_txe_LUT4_D_Z_LUT4_D.F
+Info:    routing  1.76  7.83 Net ft_txe_LUT4_D_Z_LUT4_D_Z (20,9) -> (22,11)
+Info:                          Sink core.encoder.payload_TRELLIS_FF_Q_15.CE
+Info:      setup  0.27  8.10 Source core.encoder.payload_TRELLIS_FF_Q_15.CE
+Info: 1.17 ns logic, 6.93 ns routing
+
+Info: Critical path report for cross-domain path 'posedge ft_clkout$TRELLIS_IO_IN$glb_clk' -> '<async>':
+Info:       type curr  total name
+Info:   clk-to-q  0.41  0.41 Source core.uart_rx_fifo.write_idx_TRELLIS_FF_Q_11.Q
+Info:    routing  0.65  1.05 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[0] (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB0.B
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.90  1.96 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB0.FCO
+Info:    routing  0.00  1.96 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_FCI_INT (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB1.FCI
+Info:      logic  0.00  1.96 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB1.FCO
+Info:    routing  0.00  1.96 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[1] (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.15  2.11 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB0.FCO
+Info:    routing  0.00  2.11 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_FCI_INT (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB1.FCI
+Info:      logic  0.00  2.11 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB1.FCO
+Info:    routing  0.00  2.11 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[3] (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.15  2.25 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB0.FCO
+Info:    routing  0.00  2.25 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_FCI_INT (11,25) -> (11,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB1.FCI
+Info:      logic  0.00  2.25 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB1.FCO
+Info:    routing  0.00  2.25 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[5] (11,25) -> (12,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.15  2.40 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB0.FCO
+Info:    routing  0.00  2.40 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_FCI_INT (12,25) -> (12,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB1.FCI
+Info:      logic  0.00  2.40 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB1.FCO
+Info:    routing  0.00  2.40 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[7] (12,25) -> (12,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.15  2.54 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB0.FCO
+Info:    routing  0.00  2.54 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_FCI_INT (12,25) -> (12,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB1.FCI
+Info:      logic  0.00  2.54 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB1.FCO
+Info:    routing  0.00  2.54 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[9] (12,25) -> (12,25)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
+Info:      logic  0.52  3.06 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB0.F
+Info:    routing  1.04  4.10 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B[10] (12,25) -> (11,26)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D_LUT4_Z.D
+Info:                          Defined in:
+Info:                               fifo.v:24.31-24.47
+Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:34.26-34.27
+Info:      logic  0.45  4.55 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D_LUT4_Z.F
+Info:    routing  0.95  5.50 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D[2] (11,26) -> (11,26)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  5.95 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3.F
+Info:    routing  0.86  6.81 Net ft_rxf_LUT4_C_A_LUT4_Z_A[0] (11,26) -> (11,24)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z.A
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  7.26 Source ft_rxf_LUT4_C_A_LUT4_Z.F
+Info:    routing  0.38  7.64 Net ft_rxf_LUT4_C_A[0] (11,24) -> (11,24)
+Info:                          Sink ft_rxf_LUT4_C.A
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  8.09 Source ft_rxf_LUT4_C.F
+Info:    routing  2.58  10.67 Net ft_rxf_LUT4_C_Z (11,24) -> (1,25)
+Info:                          Sink ft_rd_LUT4_Z.D
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.45  11.12 Source ft_rd_LUT4_Z.F
+Info:    routing  1.23  12.36 Net ft_rd$TRELLIS_IO_OUT (1,25) -> (0,25)
+Info:                          Sink ft_rd$tr_io.I
+Info:                          Defined in:
+Info:                               top.v:5.10-5.15
+Info: 4.68 ns logic, 7.68 ns routing
+
+Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 70.74 MHz (PASS at 60.00 MHz)
+
+Info: Max delay <async>                                 -> <async>                                : 7.76 ns
+Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 8.10 ns
+Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 12.36 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 3 endpoint(s)
+Info:          + represents [1,3) endpoint(s)
+Info: [  2530,   3214) |*+
+Info: [  3214,   3898) |**+
+Info: [  3898,   4582) |***********+
+Info: [  4582,   5266) |**********+
+Info: [  5266,   5950) |*+
+Info: [  5950,   6634) |**+
+Info: [  6634,   7318) |***************+
+Info: [  7318,   8002) |**********************+
+Info: [  8002,   8686) |***************+
+Info: [  8686,   9370) |*********+
+Info: [  9370,  10054) |*************+
+Info: [ 10054,  10738) |**********+
+Info: [ 10738,  11422) |****+
+Info: [ 11422,  12106) |*********+
+Info: [ 12106,  12790) |**********+
+Info: [ 12790,  13474) |**************************+
+Info: [ 13474,  14158) |************************************************************ 
+Info: [ 14158,  14842) |****************************************************+
+Info: [ 14842,  15526) |**************************************+
+Info: [ 15526,  16210) |*+
+1 warning, 0 errors
+
+Info: Program finished normally.
