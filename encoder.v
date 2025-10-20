@@ -2,6 +2,7 @@ module encoder(
   input wire clk,
   input wire rst,
 
+  input wire capture_overflow,
   input wire capture_wr,
   input wire [23:0] capture_data,
   input wire [15:0] capture_delay,
@@ -14,6 +15,7 @@ module encoder(
   reg [4:0] total_bytes;
   reg [4:0] current_byte;
   reg [63:0] payload;
+  reg overflowed = 0;
 
   wire in_progress = (total_bytes != current_byte);
 
@@ -25,10 +27,26 @@ module encoder(
       payload <= 0;
       total_bytes <= 0;
       current_byte <= 0;
-      uart_tx_data <= 0;
     end else begin
 
-      if (!in_progress && capture_wr) begin
+      if (capture_overflow)
+        overflowed <= 1;
+
+      if (!in_progress && overflowed) begin
+        overflowed <= 0;
+        total_bytes <= 1;
+        current_byte <= 0;
+
+        payload <= {8'b10110000,
+                    8'b0,
+                    8'b0,
+                    8'b0,
+                    8'b0,
+                    8'b0,
+                    8'b0,
+                    8'b0};
+
+      end else if (!in_progress && capture_wr) begin
         total_bytes <= 6;
         current_byte <= 0;
 

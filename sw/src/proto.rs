@@ -4,6 +4,7 @@ use std::io::{self, Write, BufRead, prelude::*};
 #[derive(Debug)]
 pub enum DeviceResponse {
     OutputChanged { delay: u32, outputs: u32 },
+    Overflow,
 }
 
 impl DeviceResponse {
@@ -11,7 +12,10 @@ impl DeviceResponse {
         if bytes.len() < 6 {
             return None;
         }
-        if ((bytes[0] & 0xE0) == 0xC0) &&
+        if bytes[0] == 0xB0 {
+            return Some(DeviceResponse::Overflow)
+        } else 
+            if ((bytes[0] & 0xE0) == 0xC0) &&
             ((bytes[1] & 0x80) == 0x00) &&
             ((bytes[2] & 0x80) == 0x00) &&
             ((bytes[3] & 0x80) == 0x00) &&
@@ -30,6 +34,13 @@ impl DeviceResponse {
         }
 
         None
+    }
+
+    pub fn size(&self) -> usize {
+        match self {
+            Self::OutputChanged { delay: _, outputs: _ } => 6,
+            Self::Overflow => 1,
+        }
     }
 }
 
@@ -122,12 +133,21 @@ pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
     let mut values = 0;
     let mut time = 0;
     let mut result = vec![];
+    let mut first_change_occured = false;
+    let mut idx = 0;
     for resp in responses {
+        if let DeviceResponse::Overflow = resp {
+            if first_change_occured {
+                panic!("Overflow at time {} idx {}!", time as f64 / 60000000.0, idx);
+            }
+        }
+        idx += 1;
         if let DeviceResponse::OutputChanged { delay, outputs } = resp {
             time += delay + 1;
             if outputs != values {
                 values = outputs;
                 result.push(OutputChange{time, outputs});
+                first_change_occured = true;
             }
         }
     }

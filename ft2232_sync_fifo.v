@@ -38,23 +38,23 @@ module ft2232_sync_fifo (
 
   always @(posedge ft_clkout) begin
     if (stall)
-      stall = 0;
+      stall <= 0;
 
     else if (transmitting && ~stall)
       if (~ft_rxf && ((burst_counter == 16'hFFFF) || ft_txe)) begin
-        transmitting = 0;
-        stall = 1;
-        burst_counter = 0;
+        transmitting <= 0;
+        stall <= 1;
+        burst_counter <= 0;
       end else begin
-        burst_counter = { burst_counter[14:0], 1'b1 };
+        burst_counter <= { burst_counter[14:0], 1'b1 };
       end
     else if (~transmitting && ~stall)
       if (~ft_txe && ((burst_counter == 16'hFFFF) || ft_rxf)) begin
-        transmitting = 1;
-        stall = 1;
-        burst_counter = 0;
+        transmitting <= 1;
+        stall <= 1;
+        burst_counter <= 0;
       end else begin
-        burst_counter = { burst_counter[14:0], 1'b1 };
+        burst_counter <= { burst_counter[14:0], 1'b1 };
       end
   end
 endmodule

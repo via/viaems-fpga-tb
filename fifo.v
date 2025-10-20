@@ -13,8 +13,7 @@ module fifo #(
   output reg [WIDTH - 1:0] read_data,
 
   output wire full,
-  output wire empty,
-  output wire almost_full
+  output wire empty
 );
 
   localparam IDX_BITS = $clog2(DEPTH);
@@ -22,10 +21,8 @@ module fifo #(
   reg [IDX_BITS-1:0] read_idx;
   reg [IDX_BITS-1:0] write_idx;
 
-  assign full = (read_idx == (write_idx + 1));
+  assign full = (read_idx == (write_idx + 1'b1));
   assign empty = (read_idx == write_idx);
-
-  assign almost_full = ((write_idx - read_idx) >> (IDX_BITS - 2)) == 2'b11;
 
   always @(posedge clk)
     if (rst) begin
@@ -35,11 +32,11 @@ module fifo #(
     end else begin
       if (write_en && !full) begin
         memory[write_idx] <= write_data;
-        write_idx <= write_idx + 1;
+        write_idx <= write_idx + 1'b1;
       end 
       if (read_en && !empty) begin
         read_data <= memory[read_idx];
-        read_idx <= read_idx + 1;
+        read_idx <= read_idx + 1'b1;
       end
     end
 endmodule

@@ -23,7 +23,7 @@ module top (
   assign inputs = {16'h0000, A};
 
   // A[15:0] are inputs, B[15:8] are outputs
-  assign B = {outputs, 8'hZZ};
+  assign B = {outputs[7:0], 8'hZZ};
 
   core core ( 
               .ft_clkout(ft_clkout),

@@ -76,22 +76,63 @@ pub fn do_exchange(commands: Vec<DeviceCommand>) -> Vec<DeviceResponse> {
     );
     let mut buffer: Vec<u8> = vec![];
 
+    // Read out the current buffer and discard it
+
     let read_complete_time = Instant::now() + cmd_duration + Duration::from_secs(1);
     let mut results: Vec<DeviceResponse> = vec![];
 
+//    let readloop = async {
+//        while Instant::now() < read_complete_time {
+//            let resp = ftdi_a.bulk_in(FTDI_A_IN_EP, RequestBuffer::new(512)).await;
+//            buffer.extend_from_slice(&resp.data[2..]); // Status bytes??
+//            while buffer.len() >= 6 {
+//                if let Some(cmd) = DeviceResponse::parse(&buffer) {
+//                    buffer.drain(0..cmd.size());
+//                    results.push(cmd);
+//                } else {
+//                    println!("{:x}", buffer[0]);
+//                    buffer.remove(0);
+//                }
+//            }
+//        }
+//    };
+//
     let readloop = async {
+
+        let mut queue = ftdi_a.bulk_in_queue(FTDI_A_IN_EP);
+        let ps = 4;
+        while queue.pending() < 32 {
+            queue.submit(RequestBuffer::new(ps * 512));
+        }
+
+        let before = Instant::now();
+        let mut bytes = 0;
         while Instant::now() < read_complete_time {
-            let resp = ftdi_a.bulk_in(FTDI_A_IN_EP, RequestBuffer::new(512)).await;
-            buffer.extend_from_slice(&resp.data[2..]); // Status bytes??
+            let resp = queue.next_complete().await;
+            bytes += resp.data.len();
+            for p in 0..ps {
+                let start = p * 512;
+                if start > resp.data.len() {
+                    break;
+                }
+                let end = std::cmp::min(start + 512, resp.data.len());
+
+                let dstart = start + 2;
+                buffer.extend_from_slice(&resp.data[dstart..end]); // Status bytes??
+            }                                                      
+            queue.submit(RequestBuffer::reuse(resp.data, ps * 512));
             while buffer.len() >= 6 {
                 if let Some(cmd) = DeviceResponse::parse(&buffer) {
+                    buffer.drain(0..cmd.size());
                     results.push(cmd);
-                    buffer.drain(0..6);
                 } else {
+                    println!("{:x}", buffer[0]);
                     buffer.remove(0);
                 }
             }
         }
+
+        println!("{} bytes in {:?}", bytes, Instant::now() - before);
     };
 
     let writeloop = async {

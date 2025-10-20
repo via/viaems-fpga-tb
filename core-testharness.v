@@ -19,7 +19,12 @@ module core (
 
   // Simple power-on reset
   reg rst = 1;
-  always @(posedge ft_clkout) rst = 0;
+  reg [3:0] por = 10;
+
+  always @(posedge ft_clkout) begin
+      rst <= (por > 0);
+      por <= (por == 0) ? 0 : (por - 1);
+  end
 
   wire [7:0] rx_data;
   wire rx_fifo_wr;
@@ -57,11 +62,14 @@ module core (
     parser_wr <= !rx_fifo_empty;
   end
 
+  reg capture_wr;
+  wire cap_fifo_full;
+
   always @(posedge ft_clkout) begin
     if (rst)
       out <= 0;
     else if (outputs_wr)
-      out <= outputs;
+      out <= {outputs[7:0]};
   end
 
   mock_tlv2553 tlv2553(
@@ -85,11 +93,10 @@ module core (
     .read_en(cmd_rdy),
     .read_data(rx_fifo_rd),
     .full(rx_fifo_full),
-    .empty(rx_fifo_empty),
-    .almost_full());
+    .empty(rx_fifo_empty)
+  );
 
 
-  wire capture_wr;
   wire [23:0] capture_data;
   wire [15:0] capture_delay;
 
@@ -111,22 +118,24 @@ module core (
   reg rd_delay;
   always @(posedge ft_clkout) rd_delay <= cap_encoder_rdy && !cap_fifo_rd_empty;
 
-  fifo #(.DEPTH(4096), .WIDTH(40)) capture_fifo(.clk(ft_clkout), .rst(rst),
+  fifo #(.DEPTH(1024), .WIDTH(40)) capture_fifo(.clk(ft_clkout), .rst(rst),
     .write_en(capture_wr),
     .write_data({capture_delay, capture_data}),
     .read_en(cap_encoder_rdy && !cap_fifo_rd_empty),
     .read_data(cap_fifo_rd_data),
-    .empty(cap_fifo_rd_empty)
+    .empty(cap_fifo_rd_empty),
+    .full(cap_fifo_full)
   );
 
   encoder encoder(.clk(ft_clkout), .rst(rst),
+    .capture_overflow(capture_wr && cap_fifo_full),
     .capture_wr(rd_delay),
     .capture_data(cap_fifo_rd_data[23:0]),
     .capture_delay(cap_fifo_rd_data[39:24]),
     .capture_rdy(cap_encoder_rdy),
     .uart_tx_wr(tx_wr),
     .uart_tx_wr_ready(tx_ready),
-    .uart_tx_data(tx_data),
+    .uart_tx_data(tx_data)
   );
 
 
