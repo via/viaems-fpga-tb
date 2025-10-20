@@ -2,13 +2,13 @@ Warning: net 'clk12' does not exist in design, ignoring clock constraint
 Info: constraining clock net 'ft_clkout' to 60.00 MHz
 
 Info: Logic utilisation before packing:
-Info:     Total LUT4s:       378/ 9400     4%
-Info:         logic LUTs:    248/ 9400     2%
+Info:     Total LUT4s:       389/ 9400     4%
+Info:         logic LUTs:    259/ 9400     2%
 Info:         carry LUTs:     94/ 9400     1%
 Info:           RAM LUTs:     24/ 1175     2%
 Info:          RAMW LUTs:     12/ 2350     0%
 
-Info:      Total DFFs:       345/ 9400     3%
+Info:      Total DFFs:       347/ 9400     3%
 
 Info: Packing IOs..
 Info: $ft_d[7]$iobuf_i: ft_d_$_TBUF__Y.Y
@@ -82,20 +82,20 @@ Info: Packing carries...
 Info: Packing LUTs...
 Info: Packing LUT5-7s...
 Info: Packing FFs...
-Info:     182 FFs paired with LUTs.
+Info:     183 FFs paired with LUTs.
 Info: Promoting globals...
 Info:      promoting clock net 'ft_clkout$TRELLIS_IO_IN'
 Info: Placing globals...
 Info:     constraining ft_clkout$TRELLIS_IO_IN$glb_clk$drv_DCCA 'DCCA' to bel 'X24/Y15/DCC0'
 Info: Generating derived timing constraints...
 Info:     Derived frequency constraint of 60.00 MHz for net ft_clkout$TRELLIS_IO_IN$glb_clk
-Info: Checksum: 0x898dee80
+Info: Checksum: 0x2128d095
 
 Info: Device utilisation:
 Info: 	                 GSR:       0/      1     0%
-Info: 	          TRELLIS_FF:     345/   9400     3%
+Info: 	          TRELLIS_FF:     347/   9400     3%
 Info: 	          TRELLIS_IO:      50/    384    13%
-Info: 	        TRELLIS_COMB:     416/   9400     4%
+Info: 	        TRELLIS_COMB:     427/   9400     4%
 Info: 	        TRELLIS_RAMW:       6/   1175     0%
 Info: 	             EHXPLLJ:       0/      2     0%
 Info: 	               DP8KC:       9/     48    18%
@@ -123,280 +123,296 @@ Info: 	                OSCJ:       0/      1     0%
 Info: 	                EFBB:       0/      1     0%
 
 Info: Placed 51 cells based on constraints.
-Info: Creating initial analytic placement for 443 cells, random placement wirelen = 20754.
-Info:     at initial placer iter 0, wirelen = 1926
-Info:     at initial placer iter 1, wirelen = 1727
-Info:     at initial placer iter 2, wirelen = 1685
-Info:     at initial placer iter 3, wirelen = 1701
-Info: Running main analytical placer, max placement attempts per cell = 85491.
-Info:     at iteration #1, type ALL: wirelen solved = 1667, spread = 3844, legal = 4152; time = 0.01s
-Info:     at iteration #2, type ALL: wirelen solved = 1764, spread = 3812, legal = 3961; time = 0.01s
-Info:     at iteration #3, type ALL: wirelen solved = 1782, spread = 3785, legal = 4366; time = 0.01s
-Info:     at iteration #4, type ALL: wirelen solved = 1780, spread = 3729, legal = 4072; time = 0.01s
-Info:     at iteration #5, type ALL: wirelen solved = 1824, spread = 3832, legal = 3854; time = 0.01s
-Info:     at iteration #6, type ALL: wirelen solved = 1833, spread = 3773, legal = 4044; time = 0.01s
-Info:     at iteration #7, type ALL: wirelen solved = 1816, spread = 3960, legal = 4315; time = 0.01s
-Info:     at iteration #8, type ALL: wirelen solved = 1855, spread = 4246, legal = 4365; time = 0.01s
-Info:     at iteration #9, type ALL: wirelen solved = 1945, spread = 4459, legal = 4497; time = 0.01s
-Info:     at iteration #10, type ALL: wirelen solved = 1967, spread = 4401, legal = 4837; time = 0.01s
-Info: HeAP Placer Time: 0.14s
-Info:   of which solving equations: 0.10s
+Info: Creating initial analytic placement for 455 cells, random placement wirelen = 21235.
+Info:     at initial placer iter 0, wirelen = 1965
+Info:     at initial placer iter 1, wirelen = 1806
+Info:     at initial placer iter 2, wirelen = 1817
+Info:     at initial placer iter 3, wirelen = 1798
+Info: Running main analytical placer, max placement attempts per cell = 88200.
+Info:     at iteration #1, type ALL: wirelen solved = 1784, spread = 4828, legal = 5001; time = 0.01s
+Info:     at iteration #2, type ALL: wirelen solved = 1821, spread = 4323, legal = 4650; time = 0.01s
+Info:     at iteration #3, type ALL: wirelen solved = 1872, spread = 4522, legal = 4452; time = 0.01s
+Info:     at iteration #4, type ALL: wirelen solved = 1953, spread = 4266, legal = 4301; time = 0.01s
+Info:     at iteration #5, type ALL: wirelen solved = 1897, spread = 4226, legal = 4317; time = 0.01s
+Info:     at iteration #6, type ALL: wirelen solved = 1955, spread = 4172, legal = 4333; time = 0.01s
+Info:     at iteration #7, type ALL: wirelen solved = 2013, spread = 4336, legal = 4211; time = 0.01s
+Info:     at iteration #8, type ALL: wirelen solved = 2043, spread = 4213, legal = 4243; time = 0.01s
+Info:     at iteration #9, type ALL: wirelen solved = 2086, spread = 4209, legal = 4352; time = 0.01s
+Info:     at iteration #10, type ALL: wirelen solved = 2142, spread = 4198, legal = 4085; time = 0.01s
+Info:     at iteration #11, type ALL: wirelen solved = 2118, spread = 4588, legal = 4456; time = 0.01s
+Info:     at iteration #12, type ALL: wirelen solved = 2304, spread = 3862, legal = 4020; time = 0.01s
+Info:     at iteration #13, type ALL: wirelen solved = 2139, spread = 4072, legal = 4032; time = 0.01s
+Info:     at iteration #14, type ALL: wirelen solved = 2314, spread = 3767, legal = 3852; time = 0.01s
+Info:     at iteration #15, type ALL: wirelen solved = 2281, spread = 4397, legal = 4542; time = 0.01s
+Info:     at iteration #16, type ALL: wirelen solved = 2349, spread = 3930, legal = 4092; time = 0.01s
+Info:     at iteration #17, type ALL: wirelen solved = 2373, spread = 4759, legal = 4911; time = 0.01s
+Info:     at iteration #18, type ALL: wirelen solved = 2348, spread = 4862, legal = 5025; time = 0.01s
+Info:     at iteration #19, type ALL: wirelen solved = 2468, spread = 4790, legal = 4983; time = 0.01s
+Info: HeAP Placer Time: 0.24s
+Info:   of which solving equations: 0.17s
 Info:   of which spreading cells: 0.01s
 Info:   of which strict legalisation: 0.01s
 
 Info: Running simulated annealing placer for refinement.
-Info:   at iteration #1: temp = 0.000000, timing cost = 240, wirelen = 3854
-Info:   at iteration #5: temp = 0.000000, timing cost = 149, wirelen = 3315
-Info:   at iteration #10: temp = 0.000000, timing cost = 155, wirelen = 3292
-Info:   at iteration #15: temp = 0.000000, timing cost = 150, wirelen = 3160
-Info:   at iteration #16: temp = 0.000000, timing cost = 136, wirelen = 3183 
-Info: SA placement time 0.25s
+Info:   at iteration #1: temp = 0.000000, timing cost = 138, wirelen = 3852
+Info:   at iteration #5: temp = 0.000000, timing cost = 110, wirelen = 3429
+Info:   at iteration #10: temp = 0.000000, timing cost = 93, wirelen = 3290
+Info:   at iteration #12: temp = 0.000000, timing cost = 79, wirelen = 3276 
+Info: SA placement time 0.18s
 
-Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 70.99 MHz (PASS at 60.00 MHz)
+Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 93.35 MHz (PASS at 60.00 MHz)
 
-Info: Max delay <async>                                 -> <async>                                : 9.58 ns
-Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 10.84 ns
-Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 10.14 ns
+Info: Max delay <async>                                 -> <async>                                : 8.49 ns
+Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 8.72 ns
+Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 9.52 ns
 
 Info: Slack histogram:
 Info:  legend: * represents 2 endpoint(s)
 Info:          + represents [1,2) endpoint(s)
-Info: [  2580,   3234) |*+
-Info: [  3234,   3888) |*****+
-Info: [  3888,   4542) |******+
-Info: [  4542,   5196) |*****************+
-Info: [  5196,   5850) |******************+
-Info: [  5850,   6504) |****************+
-Info: [  6504,   7158) |********************+
-Info: [  7158,   7812) |**********+
-Info: [  7812,   8466) |***+
-Info: [  8466,   9120) |**+
-Info: [  9120,   9774) |************+
-Info: [  9774,  10428) |***********************+
-Info: [ 10428,  11082) |**********+
-Info: [ 11082,  11736) |*********+
-Info: [ 11736,  12390) |********************************************* 
-Info: [ 12390,  13044) |*************************+
-Info: [ 13044,  13698) |****************************+
-Info: [ 13698,  14352) |************************************************************ 
-Info: [ 14352,  15006) |********************************************************+
-Info: [ 15006,  15660) |************************************************+
-Info: Checksum: 0x2dfe898d
+Info: [  5954,   6448) |*+
+Info: [  6448,   6942) |**+
+Info: [  6942,   7436) |****+
+Info: [  7436,   7930) |*********+
+Info: [  7930,   8424) |**********************+
+Info: [  8424,   8918) |********+
+Info: [  8918,   9412) |***************+
+Info: [  9412,   9906) |********************************+
+Info: [  9906,  10400) |*************************+
+Info: [ 10400,  10894) |*********************+
+Info: [ 10894,  11388) |*********************+
+Info: [ 11388,  11882) |***********************************+
+Info: [ 11882,  12376) |**************+
+Info: [ 12376,  12870) |****+
+Info: [ 12870,  13364) |***************+
+Info: [ 13364,  13858) |*************************+
+Info: [ 13858,  14352) |********************+
+Info: [ 14352,  14846) |************************************************************ 
+Info: [ 14846,  15340) |*************************************+
+Info: [ 15340,  15834) |**************************************+
+Info: Checksum: 0xa5e9471d
 Info: Routing globals...
 Info:     routed net 'ft_clkout$TRELLIS_IO_IN$glb_clk' using global resources
 
 Info: Routing..
 Info: Setting up routing queue.
-Info: Routing 2348 arcs.
+Info: Routing 2415 arcs.
 Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
 Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
-Info:       1000 |      439        560 |  439   560 |      1870|       0.09       0.09|
-Info:       2000 |     1058        941 |  619   381 |      1572|       0.08       0.17|
-Info:       3000 |     1705       1283 |  647   342 |      1311|       0.09       0.26|
-Info:       4000 |     2068       1907 |  363   624 |       773|       0.11       0.36|
-Info:       5000 |     2475       2477 |  407   570 |       300|       0.11       0.47|
-Info:       5493 |     2598       2834 |  123   357 |         0|       0.29       0.77|
+Info:       1000 |      411        588 |  411   588 |      1927|       0.09       0.09|
+Info:       2000 |      978       1021 |  567   433 |      1595|       0.06       0.15|
+Info:       3000 |     1598       1390 |  620   369 |      1308|       0.07       0.22|
+Info:       4000 |     2072       1916 |  474   526 |       917|       0.11       0.33|
+Info:       5000 |     2400       2554 |  328   638 |       322|       0.12       0.45|
+Info:       5713 |     2675       2977 |  275   423 |         0|       0.35       0.80|
 Info: Routing complete.
-Info: Router1 time 0.77s
-Info: Checksum: 0x14cafdc0
+Info: Router1 time 0.80s
+Info: Checksum: 0xa068d14d
 
 Info: Critical path report for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk' (posedge -> posedge):
 Info:       type curr  total name
-Info:   clk-to-q  0.41  0.41 Source core.parser.decode_buffer_TRELLIS_FF_Q_2.Q
-Info:    routing  0.74  1.15 Net core.adc_sel[2] (16,26) -> (16,26)
-Info:                          Sink core.parser.is_output_cmd_LUT4_Z_C_LUT4_Z.C
+Info:   clk-to-q  0.37  0.37 Source core.parser.decode_buffer_TRELLIS_FF_Q_8.Q
+Info:    routing  0.87  1.24 Net core.parser.decode_buffer[23] (9,16) -> (9,16)
+Info:                          Sink core.adc_wr_LUT4_Z_D_LUT4_Z_1.C
 Info:                          Defined in:
-Info:                               mock_tlv2553.v:5.20-5.23
-Info:      logic  0.45  1.60 Source core.parser.is_output_cmd_LUT4_Z_C_LUT4_Z.F
-Info:    routing  1.03  2.63 Net core.parser.is_output_cmd_LUT4_Z_C[1] (16,26) -> (17,26)
-Info:                          Sink core.parser.is_output_cmd_LUT4_Z.C
+Info:                               parser.v:21.14-21.27
+Info:      logic  0.41  1.65 Source core.adc_wr_LUT4_Z_D_LUT4_Z_1.F
+Info:    routing  0.89  2.54 Net core.adc_wr_LUT4_Z_D[0] (9,16) -> (9,17)
+Info:                          Sink core.parser.is_output_cmd_LUT4_Z.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  3.08 Source core.parser.is_output_cmd_LUT4_Z.F
-Info:    routing  2.22  5.31 Net core.adc_wr_LUT4_Z_D_LUT4_C_Z[2] (17,26) -> (17,27)
-Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A_LUT4_Z_1.C
+Info:      logic  0.41  2.95 Source core.parser.is_output_cmd_LUT4_Z.F
+Info:    routing  0.89  3.84 Net core.outputs_wr (9,17) -> (9,17)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_1_A_LUT4_Z.A
 Info:                          Defined in:
 Info:                               parser.v:9.15-9.25
-Info:      logic  0.45  5.76 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A_LUT4_Z_1.F
-Info:    routing  1.11  6.86 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2_A[0] (17,27) -> (17,25)
-Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2.A
+Info:      logic  0.41  4.25 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_1_A_LUT4_Z.F
+Info:    routing  1.59  5.84 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_1_A[2] (9,17) -> (8,18)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_1.C
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  7.32 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_2.F
-Info:    routing  0.99  8.31 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A[3] (17,25) -> (15,25)
-Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2.D
+Info:      logic  0.41  6.24 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2_A_LUT4_Z_1.F
+Info:    routing  0.87  7.11 Net core.parser.paused_LUT4_Z_A_LUT4_Z_2_A[2] (8,18) -> (8,18)
+Info:                          Sink core.parser.paused_LUT4_Z_A_LUT4_Z_2.C
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  8.76 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2.F
-Info:    routing  0.98  9.73 Net core.parser.paused_LUT4_Z_A[3] (15,25) -> (15,25)
-Info:                          Sink core.parser.paused_LUT4_Z.D
+Info:      logic  0.41  7.52 Source core.parser.paused_LUT4_Z_A_LUT4_Z_2.F
+Info:    routing  0.87  8.39 Net core.parser.paused_LUT4_Z_A[2] (8,18) -> (8,18)
+Info:                          Sink core.parser.paused_LUT4_Z.C
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  10.19 Source core.parser.paused_LUT4_Z.F
-Info:    routing  0.56  10.74 Net core.parser_wr_TRELLIS_FF_Q_DI[0] (15,25) -> (15,26)
-Info:                          Sink core.parser_wr_LUT4_D.C
+Info:      logic  0.41  8.80 Source core.parser.paused_LUT4_Z.F
+Info:    routing  1.35  10.15 Net core.scenario_running_LUT4_D_Z[0] (8,18) -> (6,16)
+Info:                          Sink core.scenario_running_LUT4_D_C_LUT4_D.C
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  11.19 Source core.parser_wr_LUT4_D.F
-Info:    routing  2.67  13.86 Net core.parser_wr_LUT4_D_Z (15,26) -> (15,25)
-Info:                          Sink core.parser.decode_buffer_TRELLIS_FF_Q_6.CE
+Info:      logic  0.41  10.55 Source core.scenario_running_LUT4_D_C_LUT4_D.F
+Info:    routing  1.40  11.95 Net core.scenario_running_LUT4_D_C_LUT4_D_Z (6,16) -> (9,15)
+Info:                          Sink core.uart_rx_fifo.memory.0.3.CEB
 Info:                          Defined in:
-Info:                               parser.v:68.11-68.29
-Info:      setup  0.27  14.14 Source core.parser.decode_buffer_TRELLIS_FF_Q_6.CE
-Info: 3.84 ns logic, 10.29 ns routing
+Info:                               fifo.v:37.11-37.28
+Info:      setup  0.19  12.14 Source core.uart_rx_fifo.memory.0.3.CEB
+Info: 3.41 ns logic, 8.73 ns routing
 
 Info: Critical path report for cross-domain path '<async>' -> '<async>':
 Info:       type curr  total name
 Info:     source  0.00  0.00 Source ft_rxf$tr_io.O
-Info:    routing  3.04  3.04 Net ft_rxf$TRELLIS_IO_IN (0,27) -> (11,24)
+Info:    routing  2.55  2.55 Net ft_rxf$TRELLIS_IO_IN (0,27) -> (3,17)
 Info:                          Sink ft_rxf_LUT4_C.C
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  3.49 Source ft_rxf_LUT4_C.F
-Info:    routing  2.58  6.07 Net ft_rxf_LUT4_C_Z (11,24) -> (1,25)
+Info:      logic  0.41  2.96 Source ft_rxf_LUT4_C.F
+Info:    routing  1.65  4.61 Net ft_rxf_LUT4_C_Z (3,17) -> (2,19)
 Info:                          Sink ft_rd_LUT4_Z.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  6.53 Source ft_rd_LUT4_Z.F
-Info:    routing  1.23  7.76 Net ft_rd$TRELLIS_IO_OUT (1,25) -> (0,25)
+Info:      logic  0.41  5.02 Source ft_rd_LUT4_Z.F
+Info:    routing  1.45  6.47 Net ft_rd$TRELLIS_IO_OUT (2,19) -> (0,25)
 Info:                          Sink ft_rd$tr_io.I
 Info:                          Defined in:
 Info:                               top.v:5.10-5.15
-Info: 0.90 ns logic, 6.85 ns routing
+Info: 0.82 ns logic, 5.66 ns routing
 
 Info: Critical path report for cross-domain path '<async>' -> 'posedge ft_clkout$TRELLIS_IO_IN$glb_clk':
 Info:       type curr  total name
 Info:     source  0.00  0.00 Source ft_txe$tr_io.O
-Info:    routing  2.75  2.75 Net ft_txe$TRELLIS_IO_IN (0,25) -> (10,10)
+Info:    routing  2.75  2.75 Net ft_txe$TRELLIS_IO_IN (0,25) -> (11,12)
 Info:                          Sink ft_txe_LUT4_D.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  3.20 Source ft_txe_LUT4_D.F
-Info:    routing  2.42  5.62 Net ft_txe_LUT4_D_Z (10,10) -> (20,9)
+Info:      logic  0.41  3.16 Source ft_txe_LUT4_D.F
+Info:    routing  1.12  4.28 Net ft_txe_LUT4_D_Z (11,12) -> (16,12)
 Info:                          Sink ft_txe_LUT4_D_Z_LUT4_D.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  6.07 Source ft_txe_LUT4_D_Z_LUT4_D.F
-Info:    routing  1.76  7.83 Net ft_txe_LUT4_D_Z_LUT4_D_Z (20,9) -> (22,11)
-Info:                          Sink core.encoder.payload_TRELLIS_FF_Q_15.CE
-Info:      setup  0.27  8.10 Source core.encoder.payload_TRELLIS_FF_Q_15.CE
-Info: 1.17 ns logic, 6.93 ns routing
+Info:      logic  0.41  4.69 Source ft_txe_LUT4_D_Z_LUT4_D.F
+Info:    routing  1.67  6.35 Net ft_txe_LUT4_D_Z_LUT4_D_Z[0] (16,12) -> (13,13)
+Info:                          Sink core.encoder.payload_TRELLIS_FF_Q_3_CE_LUT4_Z.C
+Info:                          Defined in:
+Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
+Info:      logic  0.41  6.76 Source core.encoder.payload_TRELLIS_FF_Q_3_CE_LUT4_Z.F
+Info:    routing  0.53  7.29 Net core.encoder.payload_TRELLIS_FF_Q_3_CE (13,13) -> (13,13)
+Info:                          Sink core.encoder.payload_TRELLIS_FF_Q_3.CE
+Info:      setup  0.24  7.53 Source core.encoder.payload_TRELLIS_FF_Q_3.CE
+Info: 1.46 ns logic, 6.07 ns routing
 
 Info: Critical path report for cross-domain path 'posedge ft_clkout$TRELLIS_IO_IN$glb_clk' -> '<async>':
 Info:       type curr  total name
-Info:   clk-to-q  0.41  0.41 Source core.uart_rx_fifo.write_idx_TRELLIS_FF_Q_11.Q
-Info:    routing  0.65  1.05 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[0] (11,25) -> (11,25)
+Info:   clk-to-q  0.37  0.37 Source core.uart_rx_fifo.write_idx_TRELLIS_FF_Q_11.Q
+Info:    routing  0.58  0.95 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[0] (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB0.B
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.90  1.96 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB0.FCO
-Info:    routing  0.00  1.96 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_FCI_INT (11,25) -> (11,25)
+Info:      logic  0.79  1.74 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB0.FCO
+Info:    routing  0.00  1.74 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_FCI_INT (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB1.FCI
-Info:      logic  0.00  1.96 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB1.FCO
-Info:    routing  0.00  1.96 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[1] (11,25) -> (11,25)
+Info:      logic  0.00  1.74 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_5$CCU2_COMB1.FCO
+Info:    routing  0.00  1.74 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[1] (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB0.FCI
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.15  2.11 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB0.FCO
-Info:    routing  0.00  2.11 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_FCI_INT (11,25) -> (11,25)
+Info:      logic  0.13  1.87 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB0.FCO
+Info:    routing  0.00  1.87 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_FCI_INT (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB1.FCI
-Info:      logic  0.00  2.11 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB1.FCO
-Info:    routing  0.00  2.11 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[3] (11,25) -> (11,25)
+Info:      logic  0.00  1.87 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_3$CCU2_COMB1.FCO
+Info:    routing  0.00  1.87 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[3] (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB0.FCI
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.15  2.25 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB0.FCO
-Info:    routing  0.00  2.25 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_FCI_INT (11,25) -> (11,25)
+Info:      logic  0.13  2.00 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB0.FCO
+Info:    routing  0.00  2.00 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_FCI_INT (3,16) -> (3,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB1.FCI
-Info:      logic  0.00  2.25 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB1.FCO
-Info:    routing  0.00  2.25 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[5] (11,25) -> (12,25)
+Info:      logic  0.00  2.00 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_2$CCU2_COMB1.FCO
+Info:    routing  0.00  2.00 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[5] (3,16) -> (4,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB0.FCI
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.15  2.40 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB0.FCO
-Info:    routing  0.00  2.40 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_FCI_INT (12,25) -> (12,25)
+Info:      logic  0.13  2.13 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB0.FCO
+Info:    routing  0.00  2.13 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_FCI_INT (4,16) -> (4,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB1.FCI
-Info:      logic  0.00  2.40 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB1.FCO
-Info:    routing  0.00  2.40 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[7] (12,25) -> (12,25)
+Info:      logic  0.00  2.13 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_1$CCU2_COMB1.FCO
+Info:    routing  0.00  2.13 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[7] (4,16) -> (4,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB0.FCI
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.15  2.54 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB0.FCO
-Info:    routing  0.00  2.54 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_FCI_INT (12,25) -> (12,25)
+Info:      logic  0.13  2.26 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB0.FCO
+Info:    routing  0.00  2.26 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_FCI_INT (4,16) -> (4,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB1.FCI
-Info:      logic  0.00  2.54 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB1.FCO
-Info:    routing  0.00  2.54 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[9] (12,25) -> (12,25)
+Info:      logic  0.00  2.26 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0$CCU2_COMB1.FCO
+Info:    routing  0.00  2.26 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4_COUT[9] (4,16) -> (4,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB0.FCI
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:63.22-63.23
-Info:      logic  0.52  3.06 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB0.F
-Info:    routing  1.04  4.10 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B[10] (12,25) -> (11,26)
+Info:      logic  0.13  2.39 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB0.FCO
+Info:    routing  0.00  2.39 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_FCI_INT (4,16) -> (4,16)
+Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB1.FCI
+Info:      logic  0.37  2.75 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B_CCU2D_S0_4$CCU2_COMB1.F
+Info:    routing  0.53  3.28 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_B[11] (4,16) -> (6,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D_LUT4_Z.D
 Info:                          Defined in:
 Info:                               fifo.v:24.31-24.47
 Info:                               /usr/local/bin/../share/yosys/lattice/arith_map_ccu2d.v:34.26-34.27
-Info:      logic  0.45  4.55 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D_LUT4_Z.F
-Info:    routing  0.95  5.50 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D[2] (11,26) -> (11,26)
+Info:      logic  0.41  3.69 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D_LUT4_Z.F
+Info:    routing  0.54  4.23 Net ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3_D[2] (6,16) -> (6,16)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  5.95 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3.F
-Info:    routing  0.86  6.81 Net ft_rxf_LUT4_C_A_LUT4_Z_A[0] (11,26) -> (11,24)
+Info:      logic  0.41  4.63 Source ft_rxf_LUT4_C_A_LUT4_Z_A_LUT4_Z_3.F
+Info:    routing  1.64  6.28 Net ft_rxf_LUT4_C_A_LUT4_Z_A[0] (6,16) -> (3,17)
 Info:                          Sink ft_rxf_LUT4_C_A_LUT4_Z.A
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  7.26 Source ft_rxf_LUT4_C_A_LUT4_Z.F
-Info:    routing  0.38  7.64 Net ft_rxf_LUT4_C_A[0] (11,24) -> (11,24)
+Info:      logic  0.41  6.69 Source ft_rxf_LUT4_C_A_LUT4_Z.F
+Info:    routing  0.54  7.22 Net ft_rxf_LUT4_C_A[0] (3,17) -> (3,17)
 Info:                          Sink ft_rxf_LUT4_C.A
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  8.09 Source ft_rxf_LUT4_C.F
-Info:    routing  2.58  10.67 Net ft_rxf_LUT4_C_Z (11,24) -> (1,25)
+Info:      logic  0.41  7.63 Source ft_rxf_LUT4_C.F
+Info:    routing  1.65  9.28 Net ft_rxf_LUT4_C_Z (3,17) -> (2,19)
 Info:                          Sink ft_rd_LUT4_Z.D
 Info:                          Defined in:
 Info:                               /usr/local/bin/../share/yosys/lattice/cells_map.v:108.23-108.24
-Info:      logic  0.45  11.12 Source ft_rd_LUT4_Z.F
-Info:    routing  1.23  12.36 Net ft_rd$TRELLIS_IO_OUT (1,25) -> (0,25)
+Info:      logic  0.41  9.69 Source ft_rd_LUT4_Z.F
+Info:    routing  1.45  11.14 Net ft_rd$TRELLIS_IO_OUT (2,19) -> (0,25)
 Info:                          Sink ft_rd$tr_io.I
 Info:                          Defined in:
 Info:                               top.v:5.10-5.15
-Info: 4.68 ns logic, 7.68 ns routing
+Info: 4.21 ns logic, 6.93 ns routing
 
-Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 70.74 MHz (PASS at 60.00 MHz)
+Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 82.37 MHz (PASS at 60.00 MHz)
 
-Info: Max delay <async>                                 -> <async>                                : 7.76 ns
-Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 8.10 ns
-Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 12.36 ns
+Info: Max delay <async>                                 -> <async>                                : 6.47 ns
+Info: Max delay <async>                                 -> posedge ft_clkout$TRELLIS_IO_IN$glb_clk: 7.53 ns
+Info: Max delay posedge ft_clkout$TRELLIS_IO_IN$glb_clk -> <async>                                : 11.14 ns
 
 Info: Slack histogram:
 Info:  legend: * represents 3 endpoint(s)
 Info:          + represents [1,3) endpoint(s)
-Info: [  2530,   3214) |*+
-Info: [  3214,   3898) |**+
-Info: [  3898,   4582) |***********+
-Info: [  4582,   5266) |**********+
-Info: [  5266,   5950) |*+
-Info: [  5950,   6634) |**+
-Info: [  6634,   7318) |***************+
-Info: [  7318,   8002) |**********************+
-Info: [  8002,   8686) |***************+
-Info: [  8686,   9370) |*********+
-Info: [  9370,  10054) |*************+
-Info: [ 10054,  10738) |**********+
-Info: [ 10738,  11422) |****+
-Info: [ 11422,  12106) |*********+
-Info: [ 12106,  12790) |**********+
-Info: [ 12790,  13474) |**************************+
-Info: [ 13474,  14158) |************************************************************ 
-Info: [ 14158,  14842) |****************************************************+
-Info: [ 14842,  15526) |**************************************+
-Info: [ 15526,  16210) |*+
+Info: [  4525,   5112) |****+
+Info: [  5112,   5699) |************+
+Info: [  5699,   6286) |****+
+Info: [  6286,   6873) |********+
+Info: [  6873,   7460) |*+
+Info: [  7460,   8047) |****+
+Info: [  8047,   8634) |******+
+Info: [  8634,   9221) |**********+
+Info: [  9221,   9808) |***************+
+Info: [  9808,  10395) |********************+
+Info: [ 10395,  10982) |*******************+
+Info: [ 10982,  11569) |******+
+Info: [ 11569,  12156) |**********+
+Info: [ 12156,  12743) |***************+
+Info: [ 12743,  13330) |***********+
+Info: [ 13330,  13917) |*****************************************+
+Info: [ 13917,  14504) |********************************************************+
+Info: [ 14504,  15091) |************************************************************ 
+Info: [ 15091,  15678) |************************************+
+Info: [ 15678,  16265) |*****+
 1 warning, 0 errors
 
 Info: Program finished normally.

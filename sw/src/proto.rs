@@ -1,10 +1,11 @@
 use std::fs::File;
-use std::io::{self, prelude::*, BufRead, Write};
+use std::io::{self, BufRead};
 
 #[derive(Debug)]
 pub enum DeviceResponse {
     OutputChanged { delay: u32, outputs: u32 },
     Overflow,
+    Underflow,
 }
 
 impl DeviceResponse {
@@ -14,6 +15,8 @@ impl DeviceResponse {
         }
         if bytes[0] == 0xB0 {
             return Some(DeviceResponse::Overflow);
+        } else if bytes[0] == 0xB1 {
+            return Some(DeviceResponse::Underflow);
         } else if ((bytes[0] & 0xE0) == 0xC0)
             && ((bytes[1] & 0x80) == 0x00)
             && ((bytes[2] & 0x80) == 0x00)
@@ -43,6 +46,7 @@ impl DeviceResponse {
                 outputs: _,
             } => 6,
             Self::Overflow => 1,
+            Self::Underflow => 1,
         }
     }
 }
@@ -52,18 +56,18 @@ pub enum DeviceCommand {
     Delay(u32),
     Output { delay: u32, outputs: u8 },
     Adc { sel: u8, adc1: u16, adc2: u16 },
-    Reset,
+    Start,
+    Stop,
 }
 
 impl DeviceCommand {
-    pub const MAX_DELAY: usize = usize::pow(2, 25) - 1;
-
     pub fn delay(&self) -> u32 {
         match self {
             DeviceCommand::Delay(delay) => delay + 1,
             DeviceCommand::Output { delay, .. } => delay + 1,
             DeviceCommand::Adc { .. } => 1,
-            DeviceCommand::Reset => 1,
+            DeviceCommand::Start => 1,
+            DeviceCommand::Stop => 1,
         }
     }
 
@@ -87,7 +91,8 @@ impl DeviceCommand {
                 ((adc1 & 0x3) << 5) as u8 | (adc2 >> 7) as u8,
                 (adc2 & 0x7f) as u8,
             ],
-            DeviceCommand::Reset => [0xf0 as u8, 0x0 as u8, 0x0 as u8, 0x0 as u8],
+            DeviceCommand::Start => [0xf0 as u8, 0x0 as u8, 0x0 as u8, 0x0 as u8],
+            DeviceCommand::Stop => [0xf0 as u8, 0x0 as u8, 0x0 as u8, 0x1 as u8],
         }
     }
 }
@@ -102,7 +107,7 @@ pub fn parse_scenario_inputs(file: File) -> Vec<DeviceCommand> {
     let mut commands: Vec<DeviceCommand> = vec![];
 
     // first issue a test-bench reset to clear out fifos
-    commands.push(DeviceCommand::Reset {});
+    commands.push(DeviceCommand::Start {});
 
     while reader.read_line(&mut line).unwrap() != 0 {
         let tokens: Vec<&str> = line.split_whitespace().collect();
@@ -126,6 +131,7 @@ pub fn parse_scenario_inputs(file: File) -> Vec<DeviceCommand> {
         }
         line.clear();
     }
+    commands.push(DeviceCommand::Stop {});
 
     commands
 }
@@ -142,19 +148,22 @@ pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
     let mut result = vec![];
     let mut idx = 0;
     for resp in responses {
-        if let DeviceResponse::Overflow = resp {
-            panic!("Overflow at time {} idx {}!", time as f64 / 60000000.0, idx);
+        match resp {
+            DeviceResponse::Overflow => {
+                panic!("Overflow at time {} idx {}!", time as f64 / 60000000.0, idx);
+            },
+            DeviceResponse::Underflow => {
+                panic!("Underflow at time {} idx {}!", time as f64 / 60000000.0, idx);
+            },
+            DeviceResponse::OutputChanged { delay, outputs } => {
+                time += delay + 1;
+                if outputs != values {
+                    values = outputs;
+                    result.push(OutputChange { time, outputs });
+                }
+            },
         }
         idx += 1;
-
-        if let DeviceResponse::OutputChanged { delay, outputs } = resp {
-            time += delay + 1;
-            if outputs != values {
-                values = outputs;
-                result.push(OutputChange { time, outputs });
-            }
-        }
     }
-
     result
 }

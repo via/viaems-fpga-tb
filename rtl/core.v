@@ -42,12 +42,12 @@ module core (
   wire [11:0] adc1;
   wire [11:0] adc2;
 
-  wire reset_cmd;
+  wire start_cmd;
+  wire stop_cmd;
 
   reg parser_wr;
 
-  reg parser_underflow;
-  reg capture_overflow;
+  reg scenario_running;
 
   command_parser parser(.clk(ft_clkout), .rst(rst),
     .data(rx_fifo_rd),
@@ -59,8 +59,14 @@ module core (
     .adc_sel(adc_sel),
     .adc_value_1(adc1),
     .adc_value_2(adc2),
-    .reset_wr(reset_cmd));
+    .start_cmd(start_cmd),
+    .stop_cmd(stop_cmd));
 
+  always @(posedge ft_clkout)
+    if (rst || stop_cmd)
+      scenario_running <= 0;
+    else if (start_cmd)
+      scenario_running <= 1;
 
   always @(posedge ft_clkout) begin
     parser_wr <= !rx_fifo_empty;
@@ -78,7 +84,7 @@ module core (
 
   mock_tlv2553 tlv2553(
     .clk(ft_clkout),
-    .rst(rst || reset_cmd),
+    .rst(rst || !scenario_running),
     .sel(adc_sel),
     .in1(adc1),
     .in1_w(adc_wr),
@@ -122,7 +128,7 @@ module core (
   reg rd_delay;
   always @(posedge ft_clkout) rd_delay <= cap_encoder_rdy && !cap_fifo_rd_empty;
 
-  fifo #(.DEPTH(1024), .WIDTH(40)) capture_fifo(.clk(ft_clkout), .rst(rst || reset_cmd),
+  fifo #(.DEPTH(1024), .WIDTH(40)) capture_fifo(.clk(ft_clkout), .rst(rst || !scenario_running),
     .write_en(capture_wr),
     .write_data({capture_delay, capture_data}),
     .read_en(cap_encoder_rdy && !cap_fifo_rd_empty),
@@ -131,8 +137,9 @@ module core (
     .full(cap_fifo_full),
   );
 
-  encoder encoder(.clk(ft_clkout), .rst(rst || reset_cmd),
+  encoder encoder(.clk(ft_clkout), .rst(rst || !scenario_running),
     .capture_overflow(capture_wr && cap_fifo_full),
+    .parser_underflow(scenario_running && cmd_rdy && rx_fifo_empty),
     .capture_wr(rd_delay),
     .capture_data(cap_fifo_rd_data[23:0]),
     .capture_delay(cap_fifo_rd_data[39:24]),

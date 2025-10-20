@@ -21,6 +21,8 @@ struct Cli {
         help = "Submit a single output command"
     )]
     cmd_outputs: Option<String>,
+    #[options(help = "Show raw messages received from test harness")]
+    trace: bool,
 }
 
 fn main() {
@@ -36,6 +38,12 @@ fn main() {
         let inputs = proto::parse_scenario_inputs(File::open(scenario).unwrap());
 
         let result = usb::do_exchange(inputs);
+        if args.trace {
+            for r in &result {
+                println!("{:?}", r);
+            }
+        }
+
         let collapsed_results = proto::collapse_outputs(result);
 
         println!("{} changes detected", collapsed_results.len());
