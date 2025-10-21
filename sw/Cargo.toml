@@ -15,7 +15,3 @@ lto = true
 [[bin]]
 name = "viaems-fpga-tb"
 path = "src/main.rs"
-
-[[bin]]
-name = "viaems-target-proxy"
-path = "src/proxy.rs"
