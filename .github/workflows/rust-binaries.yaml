@@ -1,0 +1,35 @@
+name: "Rust client tool "
+on:
+  push:
+
+jobs:
+  x86:
+    name: build x86 static musl binary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: x86_64-unknown-linux-musl
+      - run: cargo build -r --target x86_64-unknown-linux-musl
+      - name: upload binary
+        uses: actions/upload-artifact@v4
+        with: 
+          name: viaems-fpga-tb-x86_64
+          path: target/x86_64-unknown-linux-musl/release/viaems-fpga-tb
+
+  arm:
+    name: build aarch64 static musl binary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: aarch64-unknown-linux-musl
+      - run: cargo build -r --target aarch64-unknown-linux-musl
+      - name: upload binary
+        uses: actions/upload-artifact@v4
+        with: 
+          name: viaems-fpga-tb-aarch64
+          path: target/aarch64-unknown-linux-musl/release/viaems-fpga-tb
+
