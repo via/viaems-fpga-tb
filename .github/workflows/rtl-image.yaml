@@ -29,7 +29,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ REGISTRY }}/${{ IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             NJOBS=4
