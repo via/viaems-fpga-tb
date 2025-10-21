@@ -1,0 +1,18 @@
+name: "Generate bitstream"
+on:
+  push:
+
+jobs:
+  x86:
+    name: build fpga bitstream
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/via/viaems-fpga-tb:latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: cd rtl; sh build.sh
+      - name: upload binary
+        uses: actions/upload-artifact@v4
+        with: 
+          name: viaems-fpga-tb.bit
+          path: rtl/design.bit
