@@ -148,17 +148,17 @@ Info:     at iteration #16, type ALL: wirelen solved = 2349, spread = 3930, lega
 Info:     at iteration #17, type ALL: wirelen solved = 2373, spread = 4759, legal = 4911; time = 0.01s
 Info:     at iteration #18, type ALL: wirelen solved = 2348, spread = 4862, legal = 5025; time = 0.01s
 Info:     at iteration #19, type ALL: wirelen solved = 2468, spread = 4790, legal = 4983; time = 0.01s
-Info: HeAP Placer Time: 0.24s
-Info:   of which solving equations: 0.17s
+Info: HeAP Placer Time: 0.27s
+Info:   of which solving equations: 0.18s
 Info:   of which spreading cells: 0.01s
-Info:   of which strict legalisation: 0.01s
+Info:   of which strict legalisation: 0.02s
 
 Info: Running simulated annealing placer for refinement.
 Info:   at iteration #1: temp = 0.000000, timing cost = 138, wirelen = 3852
 Info:   at iteration #5: temp = 0.000000, timing cost = 110, wirelen = 3429
 Info:   at iteration #10: temp = 0.000000, timing cost = 93, wirelen = 3290
 Info:   at iteration #12: temp = 0.000000, timing cost = 79, wirelen = 3276 
-Info: SA placement time 0.18s
+Info: SA placement time 0.20s
 
 Info: Max frequency for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk': 93.35 MHz (PASS at 60.00 MHz)
 
@@ -198,14 +198,14 @@ Info: Setting up routing queue.
 Info: Routing 2415 arcs.
 Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
 Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
-Info:       1000 |      411        588 |  411   588 |      1927|       0.09       0.09|
-Info:       2000 |      978       1021 |  567   433 |      1595|       0.06       0.15|
-Info:       3000 |     1598       1390 |  620   369 |      1308|       0.07       0.22|
-Info:       4000 |     2072       1916 |  474   526 |       917|       0.11       0.33|
-Info:       5000 |     2400       2554 |  328   638 |       322|       0.12       0.45|
-Info:       5713 |     2675       2977 |  275   423 |         0|       0.35       0.80|
+Info:       1000 |      411        588 |  411   588 |      1927|       0.11       0.11|
+Info:       2000 |      978       1021 |  567   433 |      1595|       0.07       0.18|
+Info:       3000 |     1598       1390 |  620   369 |      1308|       0.08       0.26|
+Info:       4000 |     2072       1916 |  474   526 |       917|       0.14       0.40|
+Info:       5000 |     2400       2554 |  328   638 |       322|       0.15       0.55|
+Info:       5713 |     2675       2977 |  275   423 |         0|       0.49       1.05|
 Info: Routing complete.
-Info: Router1 time 0.80s
+Info: Router1 time 1.05s
 Info: Checksum: 0xa068d14d
 
 Info: Critical path report for clock 'ft_clkout$TRELLIS_IO_IN$glb_clk' (posedge -> posedge):

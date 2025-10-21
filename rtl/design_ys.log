@@ -4,7 +4,7 @@
  |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
  |  Distributed under an ISC-like license, type "license" to see terms        |
  \----------------------------------------------------------------------------/
- Yosys 0.58 (git sha1 157aabb58, g++ 14.2.1 -fPIC -O3)
+ Yosys 0.58 (git sha1 157aabb58, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
 
 -- Parsing `top.v' using frontend ` -vlog2k' --
 
@@ -1689,11 +1689,11 @@ No more expansions possible.
 9.42.1.1. Executed ABC.
 Extracted 576 gates and 913 wires to a netlist network with 335 inputs and 123 outputs.
 Running ABC script: <abc-temp-dir>/abc.script
-ABC: UC Berkeley, ABC 1.01 (compiled Jan  4 2025 09:54:03)
+ABC: UC Berkeley, ABC 1.01 (compiled Oct 21 2025 00:29:20)
 ABC: abc 01> empty
 ABC: abc 01> source <abc-temp-dir>/abc.script
 ABC: + read_blif <abc-temp-dir>/input.blif 
-ABC: + read_lut /tmp/yosys-abc-kXaYPn/lutdefs.txt 
+ABC: + read_lut /tmp/yosys-abc-lDLBmd/lutdefs.txt 
 ABC: + strash 
 ABC: + &get -n 
 ABC: + &fraig -x 
@@ -1714,7 +1714,7 @@ ABC: Participating nodes from the first network   =     177. (  67.30 % of nodes
 ABC: Participating nodes from the second network  =     202. (  76.81 % of nodes)
 ABC: Node pairs (any polarity)                    =     177. (  67.30 % of names can be moved)
 ABC: Node pairs (same polarity)                   =     142. (  53.99 % of names can be moved)
-ABC: Total runtime =     0.03 sec
+ABC: Total runtime =     0.07 sec
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 9.42.1.2. Re-integrating ABC results.
@@ -1942,6 +1942,6 @@ Found and reported 0 problems.
 9.49. Executing JSON backend.
 
 Warnings: 2 unique messages, 3 total
-End of script. Logfile hash: eb15829ee7, CPU: user 0.49s system 0.02s, MEM: 47.97 MB peak
-Yosys 0.58 (git sha1 157aabb58, g++ 14.2.1 -fPIC -O3)
-Time spent: 34% 1x abc (0 sec), 15% 6x techmap (0 sec), ...
+End of script. Logfile hash: a941ba8d3d, CPU: user 1.14s system 0.05s, MEM: 46.56 MB peak
+Yosys 0.58 (git sha1 157aabb58, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+Time spent: 29% 1x abc (0 sec), 16% 6x techmap (0 sec), ...
