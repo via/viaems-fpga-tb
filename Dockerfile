@@ -13,9 +13,12 @@ RUN git clone --recursive -b machxo3d-i3c-pins https://github.com/via/prjtrellis
 
 RUN git clone --recursive https://github.com/YosysHQ/nextpnr.git && cd nextpnr && cmake . -B build -DARCH=machxo2 -DMACHXO2_DEVICES="9400D" &&  cd build && make -j $NJOBS && make install
 
+# Strip debug symbols
+RUN strip /usr/local/bin/* || /usr/bin/true
+
 FROM ubuntu:24.04
-RUN apt update && apt install -y libfl2 libreadline8t64 tcl libffi8 graphviz \
-  xdot python3 libpython3.12-dev libboost-system1.83.0 libboost-thread1.83.0 \
+RUN apt update && apt install -y libfl2 libreadline8t64 tcl libffi8 \
+  libpython3.12-dev libboost-system1.83.0 libboost-thread1.83.0 \
   libboost-python1.83.0  libboost-filesystem1.83.0 \
   libboost-program-options1.83.0 libboost-iostreams1.83.0 zlib1g
 COPY --from=builder /usr/local/ /usr/local/
