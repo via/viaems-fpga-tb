@@ -9,7 +9,8 @@ module top (
   inout [7:0] ft_d,
 
   input [15:0] A,
-  inout [15:0] B,
+  input [7:0] Bin,
+  output [7:0] Bout,
 
   input wire sclk,
   output wire miso,
@@ -20,10 +21,10 @@ module top (
   wire [7:0] outputs;
   wire [31:0] inputs;
 
-  assign inputs = {16'h0000, A};
+  assign inputs = {8'h0, Bin, A};
 
-  // A[15:0] are inputs, B[15:8] are outputs
-  assign B = {outputs[7:0], 8'hZZ};
+  // B[5:0] are inputs, B[15:8] are outputs
+  assign Bout = outputs;
 
   core core ( 
               .ft_clkout(ft_clkout),

@@ -147,6 +147,8 @@ pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
     let mut time = 0;
     let mut result = vec![];
     let mut idx = 0;
+    let mut handled_output = false; // Always relay the first outputchange to produce starting
+                                    // values within the first ms of the scenario
     for resp in responses {
         match resp {
             DeviceResponse::Overflow => {
@@ -157,9 +159,10 @@ pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
             },
             DeviceResponse::OutputChanged { delay, outputs } => {
                 time += delay + 1;
-                if outputs != values {
+                if !handled_output || outputs != values {
                     values = outputs;
                     result.push(OutputChange { time, outputs });
+                    handled_output = true;
                 }
             },
         }
