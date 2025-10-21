@@ -31,5 +31,5 @@ jobs:
           push: true
           tags: latest
           labels: ${{ steps.meta.outputs.labels }}
-          build-args:
-            - "NJOBS=4"
+          build-args: |
+            NJOBS=4
