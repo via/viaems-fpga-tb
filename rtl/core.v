@@ -14,7 +14,9 @@ module core (
   input wire sclk,
   output wire miso,
   input wire mosi,
-  input wire cs
+  input wire cs,
+
+  output wire status
 );
 
   // Simple power-on reset
@@ -166,6 +168,15 @@ module core (
                        .write(tx_wr),
                        .write_data(tx_data)
                       );
+
+
+  reg [31:0] status_counter = 0;
+  assign status = status_counter > 15000000;
+  always @(posedge ft_clkout)
+    if (status_counter > 30000000)
+      status_counter = 0;
+    else
+      status_counter = status_counter + 1;
 
 
 endmodule

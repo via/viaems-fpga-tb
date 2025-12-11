@@ -17,4 +17,4 @@ nextpnr-machxo2 --log top.tim \
                 --lpf testharness.lpf \
                 --textcfg design.config
 
-ecppack --input design.config  --bit design.bit --svf design.svf
+ecppack --input design.config  --bit design.bit --svf design.svf --jed design.jed
