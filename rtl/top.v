@@ -14,10 +14,10 @@ module top (
   output [7:0] D,
   output status,
 
-  input wire sclk,
-  output wire miso,
-  input wire mosi,
-  input wire cs
+  output wire sclk,
+  input wire miso,
+  output wire mosi,
+  output wire cs
 );
 
   wire [7:0] outputs;

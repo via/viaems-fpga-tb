@@ -11,10 +11,10 @@ module core (
   output reg [7:0] out,
   input wire [31:0] inputs,
 
-  input wire sclk,
-  output wire miso,
-  input wire mosi,
-  input wire cs,
+  output wire sclk,
+  input wire miso,
+  output wire mosi,
+  output wire cs,
 
   output wire status
 );
@@ -84,9 +84,22 @@ module core (
       out <= {outputs[7:0]};
   end
 
-  mock_tlv2553 tlv2553(
+//  mock_tlv2553 tlv2553(
+//    .clk(ft_clkout),
+//    .rst(rst || !scenario_running),
+//    .sel(adc_sel),
+//    .in1(adc1),
+//    .in1_w(adc_wr),
+//    .in2(adc2),
+//    .in2_w(adc_wr),
+//    .sclk(sclk),
+//    .miso(miso),
+//    .mosi(mosi),
+//    .cs(cs)
+//  );
+  ad5674 dac(
     .clk(ft_clkout),
-    .rst(rst || !scenario_running),
+    .rst(rst), // || !scenario_running),
     .sel(adc_sel),
     .in1(adc1),
     .in1_w(adc_wr),

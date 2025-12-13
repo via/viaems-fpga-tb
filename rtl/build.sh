@@ -8,6 +8,7 @@ yosys -l design_ys.log -p 'synth_lattice -family xo3d -json design.json' \
   mock_tlv2553.v \
   capture.v \
   encoder.v \
+  ad5674.v \
   fifo.v
 
 nextpnr-machxo2 --log top.tim \

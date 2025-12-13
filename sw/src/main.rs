@@ -21,6 +21,14 @@ struct Cli {
         help = "Submit a single output command"
     )]
     cmd_outputs: Option<String>,
+
+    #[options(
+        no_short,
+        long = "cmd-analog",
+        help = "Submit a single analog command (sel:val1:val2)"
+    )]
+    cmd_analog: Option<String>,
+
     #[options(help = "Show raw messages received from test harness")]
     trace: bool,
 }
@@ -32,6 +40,17 @@ fn main() {
         let cmd = proto::DeviceCommand::Output {
             delay: 0,
             outputs: parsed,
+        };
+        usb::do_exchange(vec![cmd]);
+    } else if let Some(adc) = args.cmd_analog {
+        let mut s = adc.splitn(3, ":");
+        let sel = u8::from_str_radix(s.next().unwrap(), 10).unwrap();
+        let adc1 = u16::from_str_radix(s.next().unwrap(), 16).unwrap();
+        let adc2 = u16::from_str_radix(s.next().unwrap(), 16).unwrap();
+        let cmd = proto::DeviceCommand::Adc {
+            sel,
+            adc1,
+            adc2,
         };
         usb::do_exchange(vec![cmd]);
     } else if let Some(scenario) = args.scenario {
