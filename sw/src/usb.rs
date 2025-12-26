@@ -11,6 +11,32 @@ const FTDI_A_OUT_EP: u8 = 0x02;
 const FTDI_VID: u16 = 0x0403;
 const FTDI_PID: u16 = 0x6010;
 
+pub fn reset() {
+    let deviceinfo = nusb::list_devices()
+        .unwrap()
+        .find(|d| d.vendor_id() == FTDI_VID && d.product_id() == FTDI_PID)
+        .expect("Unable to find device");
+
+    let device = deviceinfo.open().unwrap();
+
+    let ftdi_a = device.claim_interface(FTDI_A_INTERFACE).unwrap();
+
+    // Issue a reset
+    ftdi_a
+        .control_out_blocking(
+            Control {
+                control_type: nusb::transfer::ControlType::Vendor,
+                recipient: nusb::transfer::Recipient::Device,
+                request: 0x0B, // bitmode
+                value: 0x00ff, // reset
+                index: FTDI_A_INDEX,
+            },
+            &[],
+            Duration::from_millis(100),
+        )
+        .unwrap();
+}
+
 pub fn do_exchange(commands: Vec<DeviceCommand>) -> Vec<DeviceResponse> {
     let deviceinfo = nusb::list_devices()
         .unwrap()
@@ -19,7 +45,7 @@ pub fn do_exchange(commands: Vec<DeviceCommand>) -> Vec<DeviceResponse> {
 
     let device = deviceinfo.open().unwrap();
 
-    let ftdi_a = device.detach_and_claim_interface(FTDI_A_INTERFACE).unwrap();
+    let ftdi_a = device.claim_interface(FTDI_A_INTERFACE).unwrap();
 
     // Issue a reset
     ftdi_a

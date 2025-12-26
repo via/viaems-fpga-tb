@@ -23,6 +23,9 @@ struct Cli {
     cmd_outputs: Option<String>,
     #[options(help = "Show raw messages received from test harness")]
     trace: bool,
+
+    #[options(help = "Reset FTDI state")]
+    reset: bool
 }
 
 fn main() {
@@ -44,15 +47,26 @@ fn main() {
             }
         }
 
-        let collapsed_results = proto::collapse_outputs(result);
+        let collapsed_results = proto::collapse_outputs(&result);
 
         println!("{} changes detected", collapsed_results.len());
 
         if let Some(filename) = args.output {
-            let mut output_file = File::create(filename).unwrap();
+            let mut output_file = File::create(filename.clone()).unwrap();
             for c in collapsed_results {
                 writeln!(output_file, "# OUTPUTS {} {:x}", c.time, c.outputs).unwrap();
             }
+
+            let mut trace_file = File::create(filename + ".trace").unwrap();
+            let mut time = 0;
+            for c in &result {
+                if let proto::DeviceResponse::OutputChanged { delay, outputs } = c {
+                    time += delay + 1;
+                    writeln!(trace_file, "{} {:x}     {:?}", time, outputs, c).unwrap();
+                }
+            }
         }
+    } else if args.reset {
+        usb::reset();
     }
 }

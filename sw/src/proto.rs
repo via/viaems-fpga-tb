@@ -138,13 +138,13 @@ pub fn parse_scenario_inputs(file: File) -> Vec<DeviceCommand> {
 
 #[derive(Debug)]
 pub struct OutputChange {
-    pub time: u32,
+    pub time: u64,
     pub outputs: u32,
 }
 
-pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
+pub fn collapse_outputs(responses: &Vec<DeviceResponse>) -> Vec<OutputChange> {
     let mut values = 0;
-    let mut time = 0;
+    let mut time = 0 as u64;
     let mut result = vec![];
     let mut idx = 0;
     let mut handled_output = false; // Always relay the first outputchange to produce starting
@@ -158,10 +158,10 @@ pub fn collapse_outputs(responses: Vec<DeviceResponse>) -> Vec<OutputChange> {
                 panic!("Underflow at time {} idx {}!", time as f64 / 60000000.0, idx);
             },
             DeviceResponse::OutputChanged { delay, outputs } => {
-                time += delay + 1;
-                if !handled_output || outputs != values {
-                    values = outputs;
-                    result.push(OutputChange { time, outputs });
+                time += *delay as u64 + 1;
+                if !handled_output || *outputs != values {
+                    values = *outputs;
+                    result.push(OutputChange { time, outputs: *outputs });
                     handled_output = true;
                 }
             },
